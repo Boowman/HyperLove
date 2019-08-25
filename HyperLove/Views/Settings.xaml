@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HyperLove.Views.Settings">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="Shadeerah">
+                <On Platform="Android" Value="Shadeerah.ttf#Shadeerah" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="CaviarDreams">
+                <On Platform="Android" Value="CaviarDreams.ttf#CaviarDreams" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout x:Name="ui_pop_modal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="35" BackgroundColor="WhiteSmoke" Padding="15, 15, 15, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="back.png" HeightRequest="24" WidthRequest="24"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="Settings" VerticalTextAlignment="End" HorizontalOptions="StartAndExpand" FontSize="Title" TextColor="Black" FontFamily="{StaticResource Shadeerah}"/>
+            </Grid>
+        </StackLayout>
+        <ListView IsGroupingEnabled="true" HasUnevenRows="True">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

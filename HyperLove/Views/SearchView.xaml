@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HyperLove.SearchView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="http://lenardpop.co.uk/35166515_1772929786132028_1651862336350191616_n.jpg" Aspect="AspectFill"/>
+            </Grid>
+
+            <!-- Dislike Button -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.92, 0.25, 0.08">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="dislikebg.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"   VerticalOptions="FillAndExpand"     Aspect="AspectFit"/>
+                    <Image Source="dislike.png"   Grid.Row="0" Grid.Column="0" HorizontalOptions="EndAndExpand"    VerticalOptions="CenterAndExpand"   Margin="0, 0, 25, 0" WidthRequest="36" HeightRequest="36"/>
+                </Grid>
+            </StackLayout>
+
+            <!-- Like Button -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 0.92, 0.25, 0.08">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="dislikebg.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"   VerticalOptions="FillAndExpand"    Aspect="AspectFit" Rotation="180"/>
+                    <Image Source="like.png"      Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"   Margin="25, 0, 0, 0" WidthRequest="36" HeightRequest="36"/>
+                </Grid>
+            </StackLayout>
+            
+            <!-- Settings Button -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.065, 0.035, 0.1, 0.06" BackgroundColor="Blue">
+                <Image Source="settings.png"  WidthRequest="30" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            
+            <!-- Messages Button -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.94, 0.035, 0.1, 0.06" BackgroundColor="Blue">
+                <Image Source="messages.png"  WidthRequest="30" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            
+            <!-- Person Name -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.75, 1, 0.05">
+                <Label Text="Lenard Denisz Pop" FontSize="Title" FontAttributes="Italic" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0.85, 1" BackgroundColor="White" Orientation="Vertical">
+                <StackLayout HeightRequest="45" BackgroundColor="WhiteSmoke" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                    <Image Source="news.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="News:" FontSize="Title" FontAttributes="Bold" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Label Text="Lorem ipsum dolo lorem ipsum dolo" FontSize="Title" FontAttributes="Italic" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

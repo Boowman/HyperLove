@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HyperLove.Views.Account">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="Shadeerah">
+                <On Platform="Android" Value="Shadeerah.ttf#Shadeerah" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="CaviarDreams">
+                <On Platform="Android" Value="CaviarDreams.ttf#CaviarDreams" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout x:Name="ui_pop_modal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="35" BackgroundColor="WhiteSmoke" Padding="15, 15, 15, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="back.png" HeightRequest="24" WidthRequest="24"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="Edit Profile" VerticalTextAlignment="End" HorizontalOptions="StartAndExpand" FontSize="Title" TextColor="Black" FontFamily="{StaticResource Shadeerah}"/>
+            </Grid>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="ui_rows_list" IsGroupingEnabled="true" HasUnevenRows="True" VerticalOptions="Start" ItemSelected="OnItemSelected">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="15, 15, 15, 5" Orientation="Horizontal">
+                                    <Label Text="{Binding Heading}" FontFamily="{StaticResource Shadeerah}" FontSize="Subtitle" TextColor="DarkGray" VerticalTextAlignment="End" VerticalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="15, 5, 15, 5" VerticalOptions="StartAndExpand" HeightRequest="24">
+                                    <StackLayout.Triggers>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding Entry}" Value="True">
+                                            <Setter Property="Padding" Value="15, 0, 15, 10"/>
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
+                                    <Grid RowSpacing="0" ColumnSpacing="0" Padding="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" TextColor="Black" HeightRequest="24" FontSize="Subtitle" FontFamily="{StaticResource Shadeerah}" VerticalTextAlignment="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Entry}" Value="True">
+                                                    <Setter Property="IsVisible" Value="False" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Switch}" Value="False">
+                                                    <Setter Property="Grid.ColumnSpan" Value="2"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding Title}" TextColor="Black" HeightRequest="35" FontSize="Subtitle" FontFamily="{StaticResource Shadeerah}" IsVisible="{Binding Entry}">
+                                            <Entry.Triggers>
+                                                <DataTrigger TargetType="Entry" Binding="{Binding Switch}" Value="False">
+                                                    <Setter Property="Grid.ColumnSpan" Value="2"/>
+                                                </DataTrigger>
+                                            </Entry.Triggers>
+                                        </Entry>
+                                        <Switch Grid.Row="0" Grid.Column="1" OnColor="PaleVioletRed" HeightRequest="24" HorizontalOptions="EndAndExpand" IsVisible="{Binding Switch}" IsToggled="{Binding Switched}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="0">
+                    <Grid RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Text="LOG OUT"        HeightRequest="55" HorizontalOptions="FillAndExpand" FontSize="Title" FontFamily="{StaticResource Shadeerah}" TextColor="Black"/>
+                        <Button Grid.Row="1" Grid.Column="0" Text="DELETE ACCOUNT" HeightRequest="55" HorizontalOptions="FillAndExpand" FontSize="Title" FontFamily="{StaticResource Shadeerah}" TextColor="Black"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

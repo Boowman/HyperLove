@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HyperLove.Views.Preferences">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="Shadeerah">
+                <On Platform="Android" Value="Shadeerah.ttf#Shadeerah" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="CaviarDreams">
+                <On Platform="Android" Value="CaviarDreams.ttf#CaviarDreams" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout x:Name="ui_pop_modal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="35" BackgroundColor="WhiteSmoke" Padding="15, 15, 15, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Source="back.png" HeightRequest="24" WidthRequest="24"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="Preferences" VerticalTextAlignment="End" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Title" FontFamily="{StaticResource Shadeerah}"/>
+            </Grid>
+        </StackLayout>
+        <ListView x:Name="ui_rows_list" IsGroupingEnabled="true" HasUnevenRows="True">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="WhiteSmoke" Padding="15, 15, 15, 5" Orientation="Horizontal">
+                            <Label Text="{Binding Heading}"     FontFamily="{StaticResource Shadeerah}" TextColor="DarkGray" FontSize="Subtitle" VerticalTextAlignment="End"   VerticalOptions="FillAndExpand"/>
+                            <Label Text=" * Upgrade for access" FontFamily="{StaticResource Shadeerah}" TextColor="Black"    FontSize="Subtitle" FontAttributes="Bold"         VerticalTextAlignment="End" VerticalOptions="FillAndExpand" IsVisible="{Binding CheckPremium}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15, 10, 15, 10" VerticalOptions="StartAndExpand">
+                            <Grid RowSpacing="5" ColumnSpacing="0" Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}"              TextColor="Black"       FontSize="Subtitle"     FontFamily="{StaticResource Shadeerah}"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Selection}"          TextColor="DarkGray"    FontSize="Subtitle"     FontFamily="{StaticResource Shadeerah}" IsVisible="{Binding CheckPremium}"/>
+                                <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="DealBreaker" TextColor="LightGray"   FontSize="Subtitle"     VerticalTextAlignment="Center"          HorizontalTextAlignment="End" IsVisible="{Binding DealBreaker}"/>
+                                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Source="lock.png"  HeightRequest="24"      WidthRequest="24"       HorizontalOptions="EndAndExpand"        IsVisible="{Binding IsLocked}"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
