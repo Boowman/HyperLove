@@ -60,7 +60,11 @@
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.75, 1, 0.05">
                 <Label Text="Lenard Denisz Pop" FontSize="Title" FontAttributes="Italic" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
             </StackLayout>
-
+            
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.75, 1, 0.05">
+                <Label Text="Lenard Denisz Pop" FontSize="Title" FontAttributes="Italic" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0.85, 1" BackgroundColor="White" Orientation="Vertical">
                 <StackLayout HeightRequest="45" BackgroundColor="WhiteSmoke" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                     <Image Source="news.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
