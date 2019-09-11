@@ -24,7 +24,7 @@ namespace HyperLove
         public void AssignCurrentUser()
         {
             //ui_avatar.Source = App.CurrentUser.Avatar;
-            ui_personal_info.Text   = App.CurrentUser.Name      + ", "      + App.CurrentUser.Age;
+            ui_personal_info.Text   = App.CurrentUser.First      + ", "      + App.CurrentUser.Age;
             ui_profession.Text      = App.CurrentUser.Job       + " at "    + App.CurrentUser.Company;
             ui_education.Text       = App.CurrentUser.School;
         }

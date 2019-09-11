@@ -1,27 +1,81 @@
 ﻿using HyperLove.Modules.User;
+using System.Collections.Generic;
 using Xamarin.Forms;
-using Newtonsoft.Json;
 
 namespace HyperLove
 {
     public partial class App : Application
     {
         public static UserInfo CurrentUser;
+        public static List<UserInfo> SearchingProfiles = new List<UserInfo>();
 
         public App()
         {
-            string temp_user = "{'Avatar': 'http://lenardpop.co.uk/35166515_1772929786132028_1651862336350191616_n.jpg','Premium': true,'Name': 'Lenard Pop','Age': 25,'School': 'Bucks New University','Job': 'Junior Web Developer','Company': 'TonyG','City': 'Birmingham','Country': 'United Kingdom','Description': 'Lorem Opus','Instagram': false,'Instagram_ID': '0x25ni25oin25','Spotify': false,'Spotify_ID': '2srw5252n5io21qn513','Verified': false,'likes': ['vDHjTTuDnU','PKzRuRdnrO','vDHjTTuDnU','XFIjvlAzsE','DWRpSptEzs','qSekBhXaTK'],'dislikes': ['ekORzzDUYP','YGGeamCDWt','urnuxTklTZ'],'loves': ['WuMUtemMfK'],'matches': ['LBZWsrbwdY','wmTICtGJTz','kJjgDCRmFm','vZWzFSyVTz']}";
-
-            AssignCurrentUser(temp_user);
             InitializeComponent();
+
+            CurrentUser = CreateUser();
+
+            for(int x = 0; x < 10; x++)
+                SearchingProfiles.Add(CreateUser(x));
 
             MainPage = new NavigationPage(new SearchView());
         }
 
-        public void AssignCurrentUser(string user_info)
+        public UserInfo CreateUser(int index = -1)
         {
-            CurrentUser = JsonConvert.DeserializeObject<UserInfo>(user_info);
-            CurrentUser.Preferences = new PreferencesInfo();
+            UserInfo currentUser = new UserInfo();
+
+            currentUser.First   = "Lenard" + ((index != -1) ? " " + index.ToString() : "");
+            currentUser.Last    = "Pop";
+            currentUser.Age     = 25 + index;
+
+            currentUser.Email   = "denisz.pop@gmail.com";
+            currentUser.School  = "Buckinghamshire New University" + ((index != -1) ? " " + index.ToString() : "");
+
+            // User Location
+            currentUser.Location.City       = "Birmingham";
+            currentUser.Location.County     = "West Midlands";
+            currentUser.Location.Country    = "United Kingdom";
+
+            currentUser.Job     = "Junior Web Developer";
+            currentUser.Company = "TonyG";
+
+            currentUser.Premium     = false;
+            currentUser.Verified    = false;
+
+            // User Images
+            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+
+            // User Quotes
+            currentUser.Quotes.Add(0, "Lorem impus");
+            currentUser.Quotes.Add(3, "Impus");
+            currentUser.Quotes.Add(12, "Lorem impus, lorem");
+
+            // User Swipes
+            currentUser.Swipes.Matches.Add("bRcvrygwW9RX4Bof22Ra");
+            currentUser.Swipes.Matches.Add("sxNhJQeEZArEH2sMrKw8");
+            currentUser.Swipes.Matches.Add("ggsfQr3WYkQ2veyJH1vJ");
+
+            currentUser.Swipes.Loves.Add("f2LwVI55t6iu95OnCGxo");
+
+            currentUser.Swipes.Likes.Add("dssC8sgcWQFGMgYLdYW9");
+            currentUser.Swipes.Likes.Add("Vd94G8XWgi22BGaNTuYy");
+
+            currentUser.Swipes.Dislikes.Add("RJxmKM78dsYd6GWyt9gg");
+            currentUser.Swipes.Dislikes.Add("NJ0HNp6G1hLzofMKn5lb");
+            currentUser.Swipes.Dislikes.Add("373wldls1cj6b5PfDSF9");
+            currentUser.Swipes.Dislikes.Add("1FC8M4yzc1FHew1km56k");
+
+            currentUser.Instagram.Verified  = false;
+
+            currentUser.Spotify.Verified    = true;
+            currentUser.Spotify.Social_ID   = "2srw5252n5io21qn513";
+
+            return currentUser;
         }
 
         protected override void OnStart()

@@ -3,9 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="HyperLove.SearchView"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesomeBrands.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeBrands-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesomeRegular.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeRegular-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesomeSolid.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeSolid-Regular.otf"/>
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <AbsoluteLayout>
             <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
@@ -13,65 +30,174 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Source="http://lenardpop.co.uk/35166515_1772929786132028_1651862336350191616_n.jpg" Aspect="AspectFill"/>
+                <AbsoluteLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Rotation="15">
+                    <!-- Profile Image -->
+                    <Image Source="image_2" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.2, 1, 1"/>
+                    <!-- Prev & Next Image Buttons -->
+                    <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.2, 1, 1" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ContentView Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <ContentView.GestureRecognizers>
+                                <SwipeGestureRecognizer Direction="Left" Swiped="Disliked_Profile"/>
+                                <TapGestureRecognizer Tapped="PreviousImage"/>
+                            </ContentView.GestureRecognizers>
+                        </ContentView>
+                        <ContentView Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <ContentView.GestureRecognizers>
+                                <SwipeGestureRecognizer Direction="Right" Swiped="Liked_Profile"/>
+                                <TapGestureRecognizer Tapped="NextImage"/>
+                            </ContentView.GestureRecognizers>
+                        </ContentView>
+                    </Grid>
+                    <!-- User Profile Info -->
+                    <pancake:PancakeView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.45" BackgroundGradientAngle="0" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#000000">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout VerticalOptions="EndAndExpand" Margin="15, 0, 15, 20" Spacing="-15" BackgroundColor="Red">
+                                <Label Text="Lenard Denisz Pop, 25" FontSize="25" LineBreakMode="TailTruncation" FontAttributes="None" TextColor="White" HorizontalTextAlignment="Start" Opacity="0.75"/>
+                            </StackLayout>
+                            <Grid VerticalOptions="End" Margin="15, 0, 15, 15" ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="We'll get on if .."                                       FontSize="17" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalTextAlignment="Start" Opacity="0.5"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="You are ok with me making fun of things others wouldn't"  FontSize="20" FontAttributes="None" TextColor="#FFFFFF" HorizontalTextAlignment="Start" Opacity="0.75"/>
+                                <pancake:PancakeView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" CornerRadius="10">
+                                    <Button Text="&#xf06e;" TextColor="#FFFFFF" FontSize="35" FontFamily="{StaticResource FontAwesomeSolid}" Clicked="ViewProfile" BackgroundColor="#F5B22C"/>
+                                </pancake:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                    </pancake:PancakeView>
+                </AbsoluteLayout>
             </Grid>
 
-            <!-- Dislike Button -->
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.92, 0.25, 0.08">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="dislikebg.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"   VerticalOptions="FillAndExpand"     Aspect="AspectFit"/>
-                    <Image Source="dislike.png"   Grid.Row="0" Grid.Column="0" HorizontalOptions="EndAndExpand"    VerticalOptions="CenterAndExpand"   Margin="0, 0, 25, 0" WidthRequest="36" HeightRequest="36"/>
-                </Grid>
-            </StackLayout>
+            <!-- Image Selection Dots -->
+            <StackLayout x:Name="ui_image_selection" Orientation="Horizontal" Margin="15, 0, 15, 30" Spacing="15" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.15"></StackLayout>
+            
+            <!-- User Profile More Info -->
+            <AbsoluteLayout x:Name="ui_profile_root" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" IsVisible="False">
+                <ScrollView x:Name="ui_scroll_menu" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Scrolled="Ui_scroll_menu_Scrolled">
+                    <StackLayout x:Name="ui_user_info" Margin="0, 75, 0, 0">
+                        <pancake:PancakeView VerticalOptions="Start" BackgroundColor="#FFFFFF" CornerRadius="25, 25, 0, 0">
+                            <StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Start" Spacing="0" Margin="0, 15">
+                                    <Label Text="Birmingham, United Kingdom" FontSize="Subtitle"    TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                    <Label Text="Junior Web Developer"       FontSize="Title"       TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                                <FlexLayout Wrap="Wrap" Direction="Row" FlowDirection="LeftToRight" JustifyContent="Start" VerticalOptions="StartAndExpand">
+                                    <Frame HasShadow="False" BorderColor="#000000" CornerRadius="10" HeightRequest="35" Padding="7.5, 0" Margin="5, 5">
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <Label Text="&#xf004;"      FontSize="Large"    TextColor="#000000" LineBreakMode="NoWrap"  Margin="0, 7.0, 7.5, 0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                            <Label Text="Relationship"  FontSize="Subtitle" TextColor="#000000" LineBreakMode="NoWrap"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame HasShadow="False" BorderColor="#000000" CornerRadius="10" HeightRequest="35" Padding="7.5, 0" Margin="5, 5">
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="&#xf77d;" FontSize="Large"     TextColor="#000000" LineBreakMode="NoWrap" Margin="0, 7.0, 7.5, 0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                            <Label Text="Some Day" FontSize="Subtitle"  TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame HasShadow="False" BorderColor="#000000" CornerRadius="10" HeightRequest="35" Padding="7.5, 0" Margin="5, 5">
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="&#xf79f;" FontSize="Large" TextColor="#000000" LineBreakMode="NoWrap" Margin="0, 7.0, 7.5, 0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                            <Label Text="No" FontSize="Subtitle"    TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame HasShadow="False" BorderColor="#000000" CornerRadius="10" HeightRequest="35" Padding="7.5, 0" Margin="5, 5">
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="&#xf48d;" FontSize="Large"     TextColor="#000000" LineBreakMode="NoWrap" Margin="0, 7.0, 7.5, 0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                            <Label Text="Socially" FontSize="Subtitle"  TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame HasShadow="False" BorderColor="#000000" CornerRadius="10" HeightRequest="35" Padding="7.5, 0" Margin="5, 5">
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="&#xf44b;" FontSize="Large"     TextColor="#000000" LineBreakMode="NoWrap" Margin="0, 7.0, 7.5, 0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                            <Label Text="Active" FontSize="Subtitle"    TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </FlexLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Start" Spacing="15" Margin="0, 20, 0, 0">
+                                    <StackLayout BackgroundColor="#93c2d2" Spacing="0" Padding="15">
+                                        <Label Text="Lorem ipsum dolor sit amet..." FontSize="Medium" TextColor="#FFFFFF" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." FontSize="Large" TextColor="#FFFFFF"  HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="10, 0, 0, 0"/>
+                                    </StackLayout>
+                                    <StackLayout BackgroundColor="#93c2d2" Spacing="0" Padding="15">
+                                        <Label Text="Lorem ipsum ..." FontSize="Medium" TextColor="#FFFFFF" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                                        <Label Text="Lorem ipsum" FontSize="Large" TextColor="#FFFFFF"  HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="10, 0, 0, 0"/>
+                                    </StackLayout>
+                                    <StackLayout BackgroundColor="#93c2d2" Spacing="0" Padding="15">
+                                        <Label Text="Lorem ipsum dolor sit amet..." FontSize="Medium" TextColor="#FFFFFF" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                                        <Label Text="Lorem ipsum dolor sit amet." FontSize="Large" TextColor="#FFFFFF"  HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="10, 0, 0, 0"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0, 25, 0, 0">
+                                    <StackLayout Orientation="Horizontal" Padding="10, 0, 0, 5">
+                                        <Image Source="spotify" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="25" HeightRequest="25"/>
+                                        <Label Text="SPOTIFY"   FontSize="Medium" TextColor="#000000" FontAttributes="Bold"  HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                                    </StackLayout>
+                                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                                        <StackLayout x:Name="ui_spotify_albums" Orientation="Horizontal" Spacing="10" VerticalOptions="Start" Padding="10, 0, 10, 0">
 
-            <!-- Like Button -->
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 0.92, 0.25, 0.08">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="dislikebg.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"   VerticalOptions="FillAndExpand"    Aspect="AspectFit" Rotation="180"/>
-                    <Image Source="like.png"      Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"   Margin="25, 0, 0, 0" WidthRequest="36" HeightRequest="36"/>
-                </Grid>
-            </StackLayout>
-            
-            <!-- Settings Button -->
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.065, 0.035, 0.1, 0.06" BackgroundColor="Blue">
-                <Image Source="settings.png"  WidthRequest="30" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            
-            <!-- Messages Button -->
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.94, 0.035, 0.1, 0.06" BackgroundColor="Blue">
-                <Image Source="messages.png"  WidthRequest="30" HeightRequest="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-            
-            <!-- Person Name -->
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.75, 1, 0.05">
-                <Label Text="Lenard Denisz Pop" FontSize="Title" FontAttributes="Italic" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.75, 1, 0.05">
-                <Label Text="Lenard Denisz Pop" FontSize="Title" FontAttributes="Italic" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0.85, 1" BackgroundColor="White" Orientation="Vertical">
-                <StackLayout HeightRequest="45" BackgroundColor="WhiteSmoke" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                    <Image Source="news.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-                    <Label Text="News:" FontSize="Title" FontAttributes="Bold" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-                    <Label Text="Lorem ipsum dolo lorem ipsum dolo" FontSize="Title" FontAttributes="Italic" LineBreakMode="NoWrap" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </ScrollView>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0, 10, 0, 50">
+                                    <StackLayout Orientation="Horizontal" Padding="10, 0, 10, 5">
+                                        <Image Source="instagram" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="25" HeightRequest="25"/>
+                                        <Label Text="INSTAGRAM"     FontSize="Medium" TextColor="#000000" FontAttributes="Bold" LineBreakMode="NoWrap" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="425 Pictures"  FontSize="Medium" TextColor="#000000"                       LineBreakMode="NoWrap" HorizontalOptions="End"            VerticalOptions="FillAndExpand"/>
+                                    </StackLayout>
+                                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HorizontalScrollBarVisibility="Never">
+                                        <StackLayout Orientation="Horizontal" x:Name="ui_instagram_images">
+                                            
+                                        </StackLayout>
+                                    </ScrollView>
+                                </StackLayout>
+                            </StackLayout>
+                        </pancake:PancakeView>
+                    </StackLayout>
+                </ScrollView>
+                <!-- Pos Max: 0.125, Min: 0.08, Size Max: 0.35, Min: 0.01 -->
+                <pancake:PancakeView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.97, 0.13, 0.018, 0.2" CornerRadius="25" BackgroundColor="#000000" Opacity="0.25"/>
+                <pancake:PancakeView x:Name="ui_scroll_bar" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.97, 0.105, 0.018, 0.0" CornerRadius="25" BackgroundColor="#F2B02A" Opacity="1.0"/>
+            </AbsoluteLayout>
+            <!-- View Settings & Messages -->
+            <pancake:PancakeView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, -0.03, 1, 0.1" CornerRadius="25" HasShadow="True" BackgroundColor="#FFFFFF">
+                <StackLayout Orientation="Horizontal" Spacing="0" Padding="0" Margin="0, 20, 0, 0">
+                    <pancake:PancakeView x:Name="ui_settings_btn" HeightRequest="75" HorizontalOptions="StartAndExpand" CornerRadius="0, 0, 0, 0" Padding="0" Margin="0" BackgroundColor="#FFFFFF">
+                        <Button Text="&#xf085;" TextColor="#F5B22C" FontSize="Title" FontFamily="{StaticResource FontAwesomeSolid}" BackgroundColor="#FFFFFF"/>
+                    </pancake:PancakeView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                        <pancake:PancakeView HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="15" BorderColor="#F5B22C" BorderIsDashed="True" BorderThickness="2">
+                            <Grid HeightRequest="35" Margin="7.5, 0, 7.5, 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="&#xf085;" TextColor="#F5B22C"  FontSize="Medium" FontFamily="{StaticResource FontAwesomeSolid}" LineBreakMode="NoWrap" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="1" Text="Premium" TextColor="#F5B22C"   FontSize="Medium" FontAttributes="Bold"                          LineBreakMode="NoWrap" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Margin="0, -5, 0, 0"/>
+                                <Button Grid.Column="0" Grid.ColumnSpan="2" Text="" BackgroundColor="#FFFFFF" Opacity="0.3"/>
+                            </Grid>
+                        </pancake:PancakeView>
+                    </StackLayout>
+                    <pancake:PancakeView x:Name="ui_messages_btn" HeightRequest="75" HorizontalOptions="EndAndExpand" CornerRadius="0, 0, 0, 0" Padding="0" Margin="0" BackgroundColor="#FFFFFF">
+                        <Button Text="&#xf086;" TextColor="#F5B22C" FontSize="Title" FontFamily="{StaticResource FontAwesomeSolid}" BackgroundColor="#FFFFFF"/>
+                    </pancake:PancakeView>
                 </StackLayout>
-            </StackLayout>
+            </pancake:PancakeView>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

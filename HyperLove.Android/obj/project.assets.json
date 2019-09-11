@@ -821,7 +821,7 @@
           "lib/monoandroid90/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.1.0.618606": {
+      "Xamarin.Forms/4.2.0.709249": {
         "type": "package",
         "dependencies": {
           "Xamarin.Android.Support.CustomTabs": "28.0.0.1",
@@ -849,13 +849,29 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "Xamarin.Forms.PancakeView/1.1.8": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "3.5.0.129452"
+        },
+        "frameworkAssemblies": [
+          "Java.Interop"
+        ],
+        "compile": {
+          "lib/monoandroid90/Xamarin.Forms.PancakeView.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Forms.PancakeView.dll": {}
+        }
+      },
       "HyperLove/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.1.0.618606"
+          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "compile": {
           "bin/placeholder/HyperLove.dll": {}
@@ -1772,10 +1788,10 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/4.1.0.618606": {
-      "sha512": "qJoOu0DiSzsfQj7nuMtKUcl39KsUxfU9yDJ5HU1flM+hnOrSD6IyDgKKxOkqIdmVwAL8R6hISz+b8MB4P5oDFw==",
+    "Xamarin.Forms/4.2.0.709249": {
+      "sha512": "3DWqPSn9kSKJW5mwjmICV/+4IpPQrequEN1VXUhsF0i9KKnfj49jFk9VbJnT9o2aesJAk00NED67XPbSmbxKjw==",
       "type": "package",
-      "path": "xamarin.forms/4.1.0.618606",
+      "path": "xamarin.forms/4.2.0.709249",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1995,13 +2011,13 @@
         "lib/uap10.0/Xamarin.Forms.Platform.UAP.pdb",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP.pri",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/AutoSuggestStyle.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/CollectionView/ItemsViewStyles.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsCheckBoxStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsCommandBarStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsEmbeddedPageWrapper.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsFlyout.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsProgressBarStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsTextBoxStyle.xbf",
-        "lib/uap10.0/Xamarin.Forms.Platform.UAP/Items/ItemsViewStyles.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/MasterDetailControlStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/PageControlStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Properties/Xamarin.Forms.Platform.UAP.rd.xml",
@@ -2014,8 +2030,23 @@
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.1.0.618606.nupkg.sha512",
+        "xamarin.forms.4.2.0.709249.nupkg.sha512",
         "xamarin.forms.nuspec"
+      ]
+    },
+    "Xamarin.Forms.PancakeView/1.1.8": {
+      "sha512": "xPUWAWrWozOWMN9F/FJmHNKGsjTLg6OJlklZGUPWPIOziWnpl5ly/hEUGFB2DgbzXgSosFWWL093lgYGzXNNwQ==",
+      "type": "package",
+      "path": "xamarin.forms.pancakeview/1.1.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid81/Xamarin.Forms.PancakeView.dll",
+        "lib/monoandroid90/Xamarin.Forms.PancakeView.dll",
+        "lib/netstandard2.0/Xamarin.Forms.PancakeView.dll",
+        "lib/xamarinios10/Xamarin.Forms.PancakeView.dll",
+        "xamarin.forms.pancakeview.1.1.8.nupkg.sha512",
+        "xamarin.forms.pancakeview.nuspec"
       ]
     },
     "HyperLove/1.0.0": {
@@ -2036,7 +2067,8 @@
       "Xamarin.Android.Support.v7.CardView >= 28.0.0.1",
       "Xamarin.Android.Support.v7.MediaRouter >= 28.0.0.1",
       "Xamarin.Essentials >= 1.2.0",
-      "Xamarin.Forms >= 4.1.0.618606"
+      "Xamarin.Forms >= 4.2.0.709249",
+      "Xamarin.Forms.PancakeView >= 1.1.8"
     ]
   },
   "packageFolders": {
@@ -2046,11 +2078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+      "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
       "projectName": "HyperLove.Android",
-      "projectPath": "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+      "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
       "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\HyperLove\\HyperLove.Android\\obj\\",
+      "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -2071,8 +2103,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj": {
-              "projectPath": "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj"
+            "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
+              "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj"
             }
           }
         }
@@ -2119,7 +2151,11 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.1.0.618606, )"
+            "version": "[4.2.0.709249, )"
+          },
+          "Xamarin.Forms.PancakeView": {
+            "target": "Package",
+            "version": "[1.1.8, )"
           }
         }
       }

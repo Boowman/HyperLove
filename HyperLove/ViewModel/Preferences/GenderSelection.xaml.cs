@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
-using HyperLove.Modules.User;
+using HyperLove.Models.User;
 
 namespace HyperLove.ViewModel.Preferences
 {

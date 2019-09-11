@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {}
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {}
   },
   "projects": {
-    "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+        "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
         "projectName": "HyperLove.Android",
-        "projectPath": "D:\\Github\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+        "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\HyperLove\\HyperLove.Android\\obj\\",
+        "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj": {
-                "projectPath": "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj"
+              "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
+                "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj"
               }
             }
           }
@@ -74,26 +74,34 @@
               "target": "Package",
               "version": "[28.0.0.1, )"
             },
+            "Xamarin.Android.Support.v7.RecyclerView": {
+              "target": "Package",
+              "version": "[28.0.0.1, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.2.0, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.1.0.618606, )"
+              "version": "[4.2.0.709249, )"
+            },
+            "Xamarin.Forms.PancakeView": {
+              "target": "Package",
+              "version": "[1.1.8, )"
             }
           }
         }
       }
     },
-    "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj": {
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
         "projectName": "HyperLove",
-        "projectPath": "D:\\Github\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\HyperLove\\HyperLove\\obj\\",
+        "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -141,14 +149,24 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.1.0.618606, )"
+              "version": "[4.2.0.709249, )"
+            },
+            "Xamarin.Forms.PancakeView": {
+              "target": "Package",
+              "version": "[1.1.8, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     }

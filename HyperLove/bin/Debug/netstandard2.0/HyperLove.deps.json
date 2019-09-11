@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "e3f388d77e4204acdb4f0b31174d1716e59c9e61"
+    "signature": ""
   },
   "compilationOptions": {},
   "targets": {
@@ -12,7 +12,8 @@
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.1.0.618606"
+          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "runtime": {
           "HyperLove.dll": {}
@@ -51,19 +52,30 @@
           }
         }
       },
-      "Xamarin.Forms/4.1.0.618606": {
+      "Xamarin.Forms/4.2.0.709249": {
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.1.0.295"
+            "fileVersion": "4.2.0.75"
           },
           "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.1.0.295"
+            "fileVersion": "4.2.0.75"
           },
           "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.1.0.295"
+            "fileVersion": "4.2.0.75"
+          }
+        }
+      },
+      "Xamarin.Forms.PancakeView/1.1.8": {
+        "dependencies": {
+          "Xamarin.Forms": "4.2.0.709249"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Forms.PancakeView.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
           }
         }
       }
@@ -110,12 +122,19 @@
       "path": "xamarin.essentials/1.2.0",
       "hashPath": "xamarin.essentials.1.2.0.nupkg.sha512"
     },
-    "Xamarin.Forms/4.1.0.618606": {
+    "Xamarin.Forms/4.2.0.709249": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qJoOu0DiSzsfQj7nuMtKUcl39KsUxfU9yDJ5HU1flM+hnOrSD6IyDgKKxOkqIdmVwAL8R6hISz+b8MB4P5oDFw==",
-      "path": "xamarin.forms/4.1.0.618606",
-      "hashPath": "xamarin.forms.4.1.0.618606.nupkg.sha512"
+      "sha512": "sha512-3DWqPSn9kSKJW5mwjmICV/+4IpPQrequEN1VXUhsF0i9KKnfj49jFk9VbJnT9o2aesJAk00NED67XPbSmbxKjw==",
+      "path": "xamarin.forms/4.2.0.709249",
+      "hashPath": "xamarin.forms.4.2.0.709249.nupkg.sha512"
+    },
+    "Xamarin.Forms.PancakeView/1.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xPUWAWrWozOWMN9F/FJmHNKGsjTLg6OJlklZGUPWPIOziWnpl5ly/hEUGFB2DgbzXgSosFWWL093lgYGzXNNwQ==",
+      "path": "xamarin.forms.pancakeview/1.1.8",
+      "hashPath": "xamarin.forms.pancakeview.1.1.8.nupkg.sha512"
     }
   }
 }
