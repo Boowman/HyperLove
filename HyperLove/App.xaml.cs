@@ -1,4 +1,5 @@
 ﻿using HyperLove.Modules.User;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -21,16 +22,16 @@ namespace HyperLove
             MainPage = new NavigationPage(new SearchView());
         }
 
-        public UserInfo CreateUser(int index = -1)
+        private UserInfo CreateUser(int index = -1)
         {
             UserInfo currentUser = new UserInfo();
 
-            currentUser.First   = "Lenard" + ((index != -1) ? " " + index.ToString() : "");
-            currentUser.Last    = "Pop";
+            currentUser.First   = "Lenard";
+            currentUser.Last    = "Pop" + index;
             currentUser.Age     = 25 + index;
 
             currentUser.Email   = "denisz.pop@gmail.com";
-            currentUser.School  = "Buckinghamshire New University" + ((index != -1) ? " " + index.ToString() : "");
+            currentUser.School  = "Buckinghamshire New University";
 
             // User Location
             currentUser.Location.City       = "Birmingham";
@@ -44,11 +45,10 @@ namespace HyperLove
             currentUser.Verified    = false;
 
             // User Images
-            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
-            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
-            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
-            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
-            currentUser.Images.Add("http://lenardpop.co.uk/xxx.jpg");
+            currentUser.Images.Add("image_1");
+            currentUser.Images.Add("image_4");
+            currentUser.Images.Add("image_2");
+            currentUser.Images.Add("image_3");
 
             // User Quotes
             currentUser.Quotes.Add(0, "Lorem impus");
@@ -70,10 +70,11 @@ namespace HyperLove
             currentUser.Swipes.Dislikes.Add("373wldls1cj6b5PfDSF9");
             currentUser.Swipes.Dislikes.Add("1FC8M4yzc1FHew1km56k");
 
-            currentUser.Instagram.Verified  = false;
+            currentUser.Instagram.Verified  = true;
+            currentUser.Spotify.Social_ID   = "instagram_ID";
 
             currentUser.Spotify.Verified    = true;
-            currentUser.Spotify.Social_ID   = "2srw5252n5io21qn513";
+            currentUser.Spotify.Social_ID   = "spotify_ID";
 
             return currentUser;
         }

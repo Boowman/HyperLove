@@ -10,6 +10,8 @@ using HyperLove.Modules.User;
 using HyperLove.Views;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using HyperLove.ViewModel;
+using HyperLove.Models.Profile;
 
 namespace HyperLove
 {
@@ -34,157 +36,28 @@ namespace HyperLove
 
         private List<InstagramPicture> InstagramImages { get; set; }
 
-        private List<string> images;
         private int current_image = 0;
 
         private DisplayInfo deviceSize = DeviceDisplay.MainDisplayInfo;
         private float ySize = 0.0f;
         private float yPos  = 0.105f;
 
+        private UserInfoTemplates templates;
+
         public SearchView()
         {
             InitializeComponent();
+            templates = new UserInfoTemplates();
 
-            SpotifyAlbums = new List<SpotifyAlbum>();
-
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "Travis Scott",        Image = "travis_scott" });
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "The Weekend",         Image = "the_weekend" });
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "Chance The Rapper",   Image = "chance_the_rapper" });
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "Sweet Sexy Jaslage",  Image = "sweet_sexy_jaslage" });
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "Kanye West",          Image = "kanye_west" });
-            SpotifyAlbums.Add(new SpotifyAlbum { Label = "Queen The Miracle",   Image = "queen_the_miracle" });
-
-            InstagramImages = new List<InstagramPicture>();
-
-            InstagramImages.Add(new InstagramPicture { Label = "Test 1", Image = "insta_1" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 2", Image = "insta_2" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 3", Image = "insta_3" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 4", Image = "insta_4" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 5", Image = "insta_5" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 6", Image = "insta_6" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 7", Image = "insta_7" });
-            InstagramImages.Add(new InstagramPicture { Label = "Test 8", Image = "insta_8" });
-
-            images = new List<string>();
-            images.Add("image_1");
-            images.Add("image_2");
-            images.Add("image_3");
-            images.Add("image_4");
-
-            foreach(string s in images)
+            for(int x = 0; x < 5; x++)
             {
-                PancakeView tempView = new PancakeView();
-                tempView.WidthRequest = 7.5f;
-                tempView.HeightRequest = 7.5f;
-                tempView.CornerRadius = 7.5f;
-                tempView.BackgroundColor = Color.FromRgb(255, 255, 255);
-                tempView.Opacity = 0.5f;
-
-                ui_image_selection.Children.Add(tempView);
+                if(x < App.SearchingProfiles.Count)
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[x], this, ui_image_selection));
             }
 
-            SpotifyAlbumsSetup();
-            InstagramImagesSetup();
+            ViewingNewUser();
 
-            //ui_profile_image.Source = images[current_image];
-            ui_image_selection.Children[current_image].Opacity = 1.0f;
-
-            ui_user_info.Margin = new Thickness(0, deviceSize.Height / deviceSize.Density, 0, 0);
-        }
-
-        private void SpotifyAlbumsSetup()
-        {
-            foreach(SpotifyAlbum album in SpotifyAlbums)
-                ui_spotify_albums.Children.Add(SpotifyAlbumTemplate(album));
-        }
-
-        private StackLayout SpotifyAlbumTemplate(SpotifyAlbum album)
-        {
-            var layout = new StackLayout();
-            layout.Orientation      = StackOrientation.Vertical;
-            layout.VerticalOptions  = LayoutOptions.Fill;
-            layout.Spacing = 0;
-
-            var pancakeView = new PancakeView();
-            pancakeView.CornerRadius = 5;
-            pancakeView.HasShadow = true;
-            pancakeView.IsClippedToBounds = true;
-            pancakeView.HorizontalOptions = LayoutOptions.FillAndExpand;
-            pancakeView.WidthRequest = 95;
-            pancakeView.HeightRequest = 95;
-
-            var image = new Image();
-            image.Source = ImageSource.FromFile(album.Image + ".jpg");
-            image.HorizontalOptions = LayoutOptions.FillAndExpand;
-            image.VerticalOptions = LayoutOptions.FillAndExpand;
-            image.Aspect = Aspect.AspectFill;
-
-            var label = new Label();
-            label.Text = album.Label;
-            label.FontSize = 18;
-            label.TextColor = Color.Black;
-            label.LineBreakMode = LineBreakMode.TailTruncation;
-            label.HorizontalOptions = LayoutOptions.FillAndExpand;
-            label.VerticalOptions = LayoutOptions.StartAndExpand;
-            label.WidthRequest = 75;
-
-            //layout.Children.Add(pancakeView);
-            layout.Children.Add(image);
-            layout.Children.Add(label);
-
-            return layout;
-        }
-
-        private void InstagramImagesSetup()
-        {
-            List<InstagramPicture> tempImgs = new List<InstagramPicture>();
-
-            for (int index = (InstagramImages.Count - 1); index >= 0; --index)
-            {
-                tempImgs.Add(InstagramImages[index]);
-
-                if(index % 6 == 0)
-                {
-                    Grid tempGrid = InstagramGroupTemplate(tempImgs);
-
-                    ui_instagram_images.Children.Add(tempGrid);
-                    ui_instagram_images.LowerChild(tempGrid);
-
-                    tempImgs.Clear();
-                }
-            }
-        }
-
-        private Grid InstagramGroupTemplate(List<InstagramPicture> images)
-        {
-            var itemSize = 127;
-
-            var grid = new Grid();
-            grid.HorizontalOptions  = LayoutOptions.FillAndExpand;
-            grid.VerticalOptions    = LayoutOptions.Start;
-            grid.Margin             = new Thickness(10, 0, 10, 10);
-
-            grid.RowDefinitions.Add(new RowDefinition()         { Height = itemSize });
-            grid.RowDefinitions.Add(new RowDefinition()         { Height = itemSize });
-            grid.ColumnDefinitions.Add(new ColumnDefinition()   { Width  = itemSize });
-            grid.ColumnDefinitions.Add(new ColumnDefinition()   { Width  = itemSize });
-            grid.ColumnDefinitions.Add(new ColumnDefinition()   { Width  = itemSize });
-
-            for (int index = 0; index < images.Count; index++)
-            { 
-                var image = new Image();
-                image.Source = ImageSource.FromFile(images[index].Image + ".jpg");
-                image.Aspect = Aspect.AspectFill;
-
-                grid.Children.Add(image);
-
-                image.SetValue(Grid.RowProperty, index % 2);
-                image.SetValue(Grid.ColumnProperty, index / 2);
-
-                Console.WriteLine("Grid: " + images[index].Image + " - " + index % 2 + " - " + index / 2);
-            }
-
-            return grid;
+            ui_user_info.Margin = new Thickness(0, deviceSize.Height / deviceSize.Density - 220, 0, 0);
         }
 
         private void Ui_scroll_menu_Scrolled(object sender, ScrolledEventArgs e)
@@ -207,49 +80,167 @@ namespace HyperLove
             Console.WriteLine("View Settings Menu");
         }
 
-        public void SetupProfileData(UserInfo user)
+        public void ViewProfile()
         {
+            if(App.SearchingProfiles.Count > 0)
+            {
+                if (templates == null)
+                    throw new System.ArgumentException("The `Templates` variable cannot be NULL", "templates");
 
+                ui_user_name.Text       = App.SearchingProfiles[0].First + " " + App.SearchingProfiles[0].Last + ", " + App.SearchingProfiles[0].Age.ToString();
+                ui_user_location.Text   = App.SearchingProfiles[0].Location.City + ", " + App.SearchingProfiles[0].Location.Country;  
+                ui_user_job.Text        = App.SearchingProfiles[0].Job;
+
+                /* Preferences */
+                if(App.SearchingProfiles[0].Preferences.Available())
+                {
+                    templates.PreferencesSetup(App.SearchingProfiles[0].Preferences, ui_user_preferences_list);
+                }
+                else
+                {
+                    ui_user_preferences_list.IsVisible = false;
+                }
+
+                /* Spotify */
+                if (App.SearchingProfiles[0].Spotify.Verified)
+                {
+                    ui_user_spotify_albums.Children.Clear();
+
+                    SpotifyAlbums = App.SearchingProfiles[0].GetSpotifyAlbums();
+                    templates.SpotifyAlbumsSetup(SpotifyAlbums, ui_user_spotify_albums);
+
+                    ui_spotify_menu.IsVisible = true;
+                }
+                else
+                {
+                    ui_spotify_menu.IsVisible = false;
+                }
+
+                /* Instagram */
+                if (App.SearchingProfiles[0].Instagram.Verified)
+                {
+                    ui_user_instagram_images.Children.Clear();
+
+                    InstagramImages = App.SearchingProfiles[0].GetInstagramImages();
+                    templates.InstagramImagesSetup(InstagramImages, ui_user_instagram_images);
+
+                    ui_instagram_menu.IsVisible = true;
+                }
+                else
+                {
+                    ui_instagram_menu.IsVisible = false;
+                }
+
+                /* Quotes */
+                if (App.SearchingProfiles[0].Quotes.Count != 0)
+                {
+                    ui_user_quotes_list.Children.Clear();
+                    templates.QuotesSetup(App.SearchingProfiles[0].Quotes, ui_user_quotes_list);
+
+                    ui_user_quotes_list.IsVisible = true;
+                }
+                else
+                    ui_user_quotes_list.IsVisible = false;
+
+                /* Hide All Other Profiles */
+                for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+                {
+                    ui_profiles_display.Children[x].IsVisible = false;
+                }
+
+                /* Show The Profiles Menu */
+                ui_profile_root.IsVisible = true;
+                Console.Write("SearchView ViewProfile");
+            }    
         }
 
-        private async void ViewProfile(object sender, EventArgs e)
+        public void ViewingNewUser()
         {
-            await Task.WhenAll(
-                //ui_user_name.TranslateTo(           -350, 0, 2000, Easing.BounceOut),
-                //ui_user_quote_title.TranslateTo(    -350, 0, 2000, Easing.BounceOut),
-                //ui_user_quote_desc.TranslateTo(     -350, 0, 2000, Easing.BounceOut),
-                //ui_user_view_btn.TranslateTo(        350, 0, 2000, Easing.BounceOut)
-            );
+            ui_image_selection.Children.Clear();
 
-            ui_profile_root.IsVisible = true;
-            await ui_user_info.TranslateTo(0, -230, 2000, Easing.Linear);
+            foreach (string s in App.SearchingProfiles[0].Images)
+            {
+                PancakeView tempView    = new PancakeView();
+                tempView.WidthRequest   = 13;
+                tempView.HeightRequest  = 13;
+                tempView.CornerRadius   = 13;
+                tempView.Opacity        = 0.5f;
+
+                tempView.BackgroundColor = Color.FromRgb(255, 255, 255);
+
+                ui_image_selection.Children.Add(tempView);
+            }
+
+            ui_image_selection.Children[0].Opacity = 1.0f;
         }
 
-        private void Disliked_Profile(object sender, SwipedEventArgs e)
+        private void LovedUser(object sender, EventArgs e)
         {
+            App.SearchingProfiles.RemoveAt(0);
+            ui_profiles_display.Children.RemoveAt(0);
 
+            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            {
+                ui_profiles_display.Children[x].IsVisible = true;
+            }
+
+            if (App.SearchingProfiles.Count > 4)
+                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
+            else
+            {
+                if(App.SearchingProfiles.Count - 1 >= 0)
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
+                else
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+            }
+
+            ui_profile_root.IsVisible = false;
         }
 
-        private void Liked_Profile(object sender, SwipedEventArgs e)
+        private void DislikedUser(object sender, EventArgs e)
         {
+            App.SearchingProfiles.RemoveAt(0);
+            ui_profiles_display.Children.RemoveAt(0);
 
+            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            {
+                ui_profiles_display.Children[x].IsVisible = true;
+            }
+
+            if (App.SearchingProfiles.Count > 4)
+                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
+            else
+            {
+                if (App.SearchingProfiles.Count - 1 >= 0)
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
+                else
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+            }
+
+            ui_profile_root.IsVisible = false;
         }
 
-        private void ViewPreviousImage(object sender, SwipedEventArgs e)
+        private void LikedUser(object sender, EventArgs e)
         {
-            ui_image_selection.Children[current_image].Opacity = 0.5f;
-            current_image = ((current_image - 1) < 0) ? images.Count - 1 : current_image - 1;
-            //ui_profile_image.Source = images[current_image];
-            ui_image_selection.Children[current_image].Opacity = 1.0f;
-        }
+            App.SearchingProfiles.RemoveAt(0);
+            ui_profiles_display.Children.RemoveAt(0);
 
-        private void ViewNextImage(object sender, SwipedEventArgs e)
-        {
-            ui_image_selection.Children[current_image].Opacity = 0.5f;
-            current_image = ((current_image + 1) > images.Count - 1) ? 0 : current_image + 1;
-            //ui_profile_image.Source = images[current_image];
+            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            {
+                ui_profiles_display.Children[x].IsVisible = true;
+            }
 
-            ui_image_selection.Children[current_image].Opacity = 1.0f;
+            if (App.SearchingProfiles.Count > 4)
+                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
+            else
+            {
+                if (App.SearchingProfiles.Count - 1 >= 0)
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
+                else
+                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+            }
+
+            ui_profile_root.IsVisible = false;
         }
     }
 }

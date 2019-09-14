@@ -66,7 +66,7 @@ namespace HyperLove.ViewModel.Preferences
             {
                 if (App.CurrentUser.Preferences != null)
                 {
-                    if (App.CurrentUser.Preferences.Gender == selected)
+                    if (App.CurrentUser.Preferences.Gender.Value == selected)
                         return true;
                 }
             }
@@ -89,7 +89,7 @@ namespace HyperLove.ViewModel.Preferences
                     RowsList[x].IsSelected = true;
             }
 
-            App.CurrentUser.Preferences.Gender = tempRow.Gender;
+            App.CurrentUser.Preferences.Gender.Value = tempRow.Gender;
             ui_rows_list.ItemsSource = RowsList;
         }
     }

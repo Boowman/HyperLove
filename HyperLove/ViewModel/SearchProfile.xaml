@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="HyperLove.ViewModel.SearchProfile">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesomeBrands.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeBrands-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesomeRegular.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeRegular-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesomeSolid.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeSolid-Regular.otf"/>
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <AbsoluteLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <!-- Profile Image -->
+        <Image x:Name="ui_current_image" Source="image_2" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.2, 1, 1"/>
+        <!-- Prev & Next Image Buttons -->
+        <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.2, 1, 1" RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ContentView Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ContentView.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="LovedProfile"/>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="LikedProfile"/>
+                    <TapGestureRecognizer Tapped="ViewPreviousImage"/>
+                </ContentView.GestureRecognizers>
+            </ContentView>
+            <ContentView Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ContentView.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="LovedProfile"/>
+                    <SwipeGestureRecognizer Direction="Left" Swiped="DislikedProfile"/>
+                    <TapGestureRecognizer Tapped="ViewNextImage"/>
+                </ContentView.GestureRecognizers>
+            </ContentView>
+        </Grid>
+        <!-- User Profile Info -->
+        <pancake:PancakeView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.45" BackgroundGradientAngle="0" BackgroundGradientStartColor="Transparent" BackgroundGradientEndColor="#000000">
+            <StackLayout x:Name="ui_profile_info" Orientation="Vertical" Margin="0, 0, 0, 35">
+                <StackLayout VerticalOptions="EndAndExpand" Margin="15, 0, 15, 20" Spacing="-15">
+                    <Label x:Name="ui_info_name" FontSize="25" LineBreakMode="TailTruncation" FontAttributes="None" TextColor="White" HorizontalTextAlignment="Start" Opacity="0.75"/>
+                </StackLayout>
+                <Grid VerticalOptions="End" Margin="15, 0, 15, 15" ColumnSpacing="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="ui_info_quote_title" Grid.Row="0" Grid.Column="0" FontSize="17" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalTextAlignment="Start" Opacity="0.5"/>
+                    <Label x:Name="ui_info_quote_desc"  Grid.Row="1" Grid.Column="0" FontSize="20" FontAttributes="None" TextColor="#FFFFFF" HorizontalTextAlignment="Start" Opacity="0.75"/>
+                    <pancake:PancakeView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" CornerRadius="10">
+                        <Button Text="&#xf06e;" TextColor="#FFFFFF" FontSize="35" FontFamily="{StaticResource FontAwesomeSolid}" Clicked="ViewProfile" BackgroundColor="#F5B22C"/>
+                    </pancake:PancakeView>
+                </Grid>
+            </StackLayout>
+        </pancake:PancakeView>
+    </AbsoluteLayout>
+</ContentView>

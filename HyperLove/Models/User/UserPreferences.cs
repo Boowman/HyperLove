@@ -6,6 +6,12 @@
         Women = 1,
         Mixed = 2
     }
+    public struct GenderIntrest
+    {
+        public bool Enabled;
+        public string Icon;
+        public EGenderIntrest Value;
+    }
 
     public enum ERelationship
     {
@@ -13,6 +19,12 @@
         SomethingCasual = 1,
         DontKnowYet = 2,
         Marriage = 3
+    }
+    public struct Relationship
+    {
+        public bool Enabled;
+        public string Icon;
+        public ERelationship Value;
     }
 
     public enum EEducation
@@ -24,6 +36,12 @@
         Postgraduate = 4,
         PostgraduateDegree = 4,
     }
+    public struct Education
+    {
+        public bool Enabled;
+        public string Icon;
+        public EEducation Value;
+    }
 
     public enum EChildren
     {
@@ -31,6 +49,12 @@
         DontWant = 1,
         HaveWantMore = 2,
         HaveDontWantMore = 3
+    }
+    public struct Children
+    {
+        public bool Enabled;
+        public string Icon;
+        public EChildren Value;
     }
 
     public enum EPets
@@ -41,12 +65,24 @@
         DontWant = 3,
         Lots = 4
     }
+    public struct Pets
+    {
+        public bool Enabled;
+        public string Icon;
+        public EPets Value;
+    }
 
     public enum EExercise
     {
         Active = 0,
         Sometimes = 1,
         AlmostNever = 2
+    }
+    public struct Exercise
+    {
+        public bool Enabled;
+        public string Icon;
+        public EExercise Value;
     }
 
     public enum EDrinking
@@ -55,12 +91,24 @@
         Never = 1,
         Frequently = 2
     }
+    public struct Drinking
+    {
+        public bool Enabled;
+        public string Icon;
+        public EDrinking Value;
+    }
 
     public enum ESmoking
     {
         Socially = 0,
         Never = 1,
         Frequently = 2
+    }
+    public struct Smoking
+    {
+        public bool Enabled;
+        public string Icon;
+        public ESmoking Value;
     }
 
     public enum EStarSign
@@ -78,6 +126,12 @@
         Sagittarius = 10,
         Capricorn = 11
     }
+    public struct StarSign
+    {
+        public bool Enabled;
+        public string Icon;
+        public EStarSign Value;
+    }
 
     public enum EEthnicity
     {
@@ -91,6 +145,12 @@
         WhiteCaucasian = 7,
         Other = 8,
         OpenToAll = 9
+    }
+    public struct Ethnicity
+    {
+        public bool Enabled;
+        public string Icon;
+        public EEthnicity Value;
     }
 
     public enum EReligion
@@ -108,11 +168,24 @@
         OpenToAll = 10
     }
 
+    public struct Religion
+    {
+        public bool Enabled;
+        public string Icon;
+        public EReligion Value;
+    }
+
     public enum EPolitics
     {
         Apolitical = 0,
         Moderate = 1,
         Liberal = 2,
         Conservative = 3
+    }
+    public struct Politics
+    {
+        public bool Enabled;
+        public string Icon;
+        public EPolitics Value;
     }
 }

@@ -61,7 +61,6 @@ D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\MainMenu.
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\SearchView.xaml.g.cs
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\HyperLove.AssemblyInfoInputs.cache
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\HyperLove.AssemblyInfo.cs
-D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\XamlC.stamp
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\HyperLove.dll
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\HyperLove.pdb
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\Pages\Account.xaml.g.cs
@@ -72,3 +71,5 @@ D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\Pages\Set
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\Pages\Suggestions.xaml.g.cs
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\Pages\Support.xaml.g.cs
 D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\Views\ProfileView.xaml.g.cs
+D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\XamlC.stamp
+D:\Github\HyperVoid\HyperLove\HyperLove\obj\Debug\netstandard2.0\ViewModel\SearchProfile.xaml.g.cs
