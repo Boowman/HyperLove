@@ -7,8 +7,6 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PancakeView;
 
 using HyperLove.Modules.User;
-using HyperLove.Views;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using HyperLove.ViewModel;
 using HyperLove.Models.Profile;
@@ -36,28 +34,24 @@ namespace HyperLove
 
         private List<InstagramPicture> InstagramImages { get; set; }
 
-        private int current_image = 0;
-
         private DisplayInfo deviceSize = DeviceDisplay.MainDisplayInfo;
         private float ySize = 0.0f;
         private float yPos  = 0.105f;
 
         private UserInfoTemplates templates;
+        private UserInfo currentUserProfile;
 
         public SearchView()
         {
             InitializeComponent();
             templates = new UserInfoTemplates();
 
-            for(int x = 0; x < 5; x++)
-            {
-                if(x < App.SearchingProfiles.Count)
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[x], this, ui_image_selection));
-            }
+            ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+            currentUserProfile = App.SearchingProfiles[0];
 
             ViewingNewUser();
 
-            ui_user_info.Margin = new Thickness(0, deviceSize.Height / deviceSize.Density - 220, 0, 0);
+            ui_user_info.Margin = new Thickness(0, deviceSize.Height / deviceSize.Density, 0, 0);
         }
 
         private void Ui_scroll_menu_Scrolled(object sender, ScrolledEventArgs e)
@@ -87,14 +81,14 @@ namespace HyperLove
                 if (templates == null)
                     throw new System.ArgumentException("The `Templates` variable cannot be NULL", "templates");
 
-                ui_user_name.Text       = App.SearchingProfiles[0].First + " " + App.SearchingProfiles[0].Last + ", " + App.SearchingProfiles[0].Age.ToString();
-                ui_user_location.Text   = App.SearchingProfiles[0].Location.City + ", " + App.SearchingProfiles[0].Location.Country;  
-                ui_user_job.Text        = App.SearchingProfiles[0].Job;
+                ui_user_name.Text = currentUserProfile.First + " " + currentUserProfile.Last + ", " + currentUserProfile.Age.ToString();
+                ui_user_location.Text = currentUserProfile.Location.City + ", " + currentUserProfile.Location.Country;
+                ui_user_job.Text = currentUserProfile.Job;
 
                 /* Preferences */
-                if(App.SearchingProfiles[0].Preferences.Available())
+                if (currentUserProfile.Preferences.Available())
                 {
-                    templates.PreferencesSetup(App.SearchingProfiles[0].Preferences, ui_user_preferences_list);
+                    templates.PreferencesSetup(currentUserProfile.Preferences, ui_user_preferences_list);
                 }
                 else
                 {
@@ -102,11 +96,11 @@ namespace HyperLove
                 }
 
                 /* Spotify */
-                if (App.SearchingProfiles[0].Spotify.Verified)
+                if (currentUserProfile.Spotify.Verified)
                 {
                     ui_user_spotify_albums.Children.Clear();
 
-                    SpotifyAlbums = App.SearchingProfiles[0].GetSpotifyAlbums();
+                    SpotifyAlbums = currentUserProfile.GetSpotifyAlbums();
                     templates.SpotifyAlbumsSetup(SpotifyAlbums, ui_user_spotify_albums);
 
                     ui_spotify_menu.IsVisible = true;
@@ -117,11 +111,11 @@ namespace HyperLove
                 }
 
                 /* Instagram */
-                if (App.SearchingProfiles[0].Instagram.Verified)
+                if (currentUserProfile.Instagram.Verified)
                 {
                     ui_user_instagram_images.Children.Clear();
 
-                    InstagramImages = App.SearchingProfiles[0].GetInstagramImages();
+                    InstagramImages = currentUserProfile.GetInstagramImages();
                     templates.InstagramImagesSetup(InstagramImages, ui_user_instagram_images);
 
                     ui_instagram_menu.IsVisible = true;
@@ -132,10 +126,10 @@ namespace HyperLove
                 }
 
                 /* Quotes */
-                if (App.SearchingProfiles[0].Quotes.Count != 0)
+                if (currentUserProfile.Quotes.Count != 0)
                 {
                     ui_user_quotes_list.Children.Clear();
-                    templates.QuotesSetup(App.SearchingProfiles[0].Quotes, ui_user_quotes_list);
+                    templates.QuotesSetup(currentUserProfile.Quotes, ui_user_quotes_list);
 
                     ui_user_quotes_list.IsVisible = true;
                 }
@@ -143,32 +137,35 @@ namespace HyperLove
                     ui_user_quotes_list.IsVisible = false;
 
                 /* Hide All Other Profiles */
-                for (int x = 2; x < ui_profiles_display.Children.Count; x++)
-                {
-                    ui_profiles_display.Children[x].IsVisible = false;
-                }
+                //for (int x = ui_profiles_display.Children.Count - 2; x >= 0; --x)
+                //{
+                //    ui_profiles_display.Children[x].IsVisible = false;
+                //}
 
                 /* Show The Profiles Menu */
                 ui_profile_root.IsVisible = true;
-                Console.Write("SearchView ViewProfile");
             }    
         }
 
         public void ViewingNewUser()
         {
-            ui_image_selection.Children.Clear();
+            int count = ui_image_selection.Children.Count - currentUserProfile.Images.Count;
+            count = Math.Abs((count == 0) ? 0 : count);
 
-            foreach (string s in App.SearchingProfiles[0].Images)
+            foreach (View item in ui_image_selection.Children)
+                item.Opacity = 0.5f;
+
+            for(int x = 0; x < count; x++)
             {
-                PancakeView tempView    = new PancakeView();
-                tempView.WidthRequest   = 13;
-                tempView.HeightRequest  = 13;
-                tempView.CornerRadius   = 13;
-                tempView.Opacity        = 0.5f;
+                PancakeView tempView = new PancakeView();
+                tempView.WidthRequest = 18;
+                tempView.HeightRequest = 7.5;
+                tempView.CornerRadius = 15;
+                tempView.Opacity = 0.5f;
 
                 tempView.BackgroundColor = Color.FromRgb(255, 255, 255);
 
-                ui_image_selection.Children.Add(tempView);
+                ui_image_selection.Children.Insert(0, tempView);
             }
 
             ui_image_selection.Children[0].Opacity = 1.0f;
@@ -179,20 +176,16 @@ namespace HyperLove
             App.SearchingProfiles.RemoveAt(0);
             ui_profiles_display.Children.RemoveAt(0);
 
-            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            if (App.SearchingProfiles.Count > 0)
             {
-                ui_profiles_display.Children[x].IsVisible = true;
+                ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+                currentUserProfile = App.SearchingProfiles[0];
+                ViewingNewUser();
             }
-
-            if (App.SearchingProfiles.Count > 4)
-                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
             else
             {
-                if(App.SearchingProfiles.Count - 1 >= 0)
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
-                else
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
-            }
+                // Add Loading New Users Animation
+            };
 
             ui_profile_root.IsVisible = false;
         }
@@ -202,20 +195,17 @@ namespace HyperLove
             App.SearchingProfiles.RemoveAt(0);
             ui_profiles_display.Children.RemoveAt(0);
 
-            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            if (App.SearchingProfiles.Count > 0)
             {
-                ui_profiles_display.Children[x].IsVisible = true;
+                ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+                currentUserProfile = App.SearchingProfiles[0];
+                ViewingNewUser();
             }
-
-            if (App.SearchingProfiles.Count > 4)
-                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
             else
             {
-                if (App.SearchingProfiles.Count - 1 >= 0)
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
-                else
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+                // Add Loading New Users Animation
             }
+
 
             ui_profile_root.IsVisible = false;
         }
@@ -225,19 +215,15 @@ namespace HyperLove
             App.SearchingProfiles.RemoveAt(0);
             ui_profiles_display.Children.RemoveAt(0);
 
-            for (int x = 2; x < ui_profiles_display.Children.Count; x++)
+            if (App.SearchingProfiles.Count > 0)
             {
-                ui_profiles_display.Children[x].IsVisible = true;
+                ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+                currentUserProfile = App.SearchingProfiles[0];
+                ViewingNewUser();
             }
-
-            if (App.SearchingProfiles.Count > 4)
-                ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[5], this, ui_image_selection));
             else
             {
-                if (App.SearchingProfiles.Count - 1 >= 0)
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[App.SearchingProfiles.Count - 1], this, ui_image_selection));
-                else
-                    ui_profiles_display.Children.Add(new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+                // Add Loading New Users Animation
             }
 
             ui_profile_root.IsVisible = false;

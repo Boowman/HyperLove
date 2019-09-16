@@ -17,10 +17,14 @@ namespace HyperLove
             CurrentUser = CreateUser();
 
             for(int x = 0; x < 10; x++)
+            {
                 SearchingProfiles.Add(CreateUser(x));
+                Console.WriteLine("Searching: " + SearchingProfiles[x].Last);
+            }
 
             MainPage = new NavigationPage(new SearchView());
         }
+
 
         private UserInfo CreateUser(int index = -1)
         {
@@ -30,7 +34,6 @@ namespace HyperLove
             currentUser.Last    = "Pop" + index;
             currentUser.Age     = 25 + index;
 
-            currentUser.Email   = "denisz.pop@gmail.com";
             currentUser.School  = "Buckinghamshire New University";
 
             // User Location
@@ -70,10 +73,10 @@ namespace HyperLove
             currentUser.Swipes.Dislikes.Add("373wldls1cj6b5PfDSF9");
             currentUser.Swipes.Dislikes.Add("1FC8M4yzc1FHew1km56k");
 
-            currentUser.Instagram.Verified  = true;
+            currentUser.Instagram.Verified  = false;
             currentUser.Spotify.Social_ID   = "instagram_ID";
 
-            currentUser.Spotify.Verified    = true;
+            currentUser.Spotify.Verified    = false;
             currentUser.Spotify.Social_ID   = "spotify_ID";
 
             return currentUser;

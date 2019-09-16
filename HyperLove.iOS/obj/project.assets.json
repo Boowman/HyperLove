@@ -35,7 +35,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.2.0.778463": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -176,7 +176,7 @@
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms": "4.2.0.778463",
           "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "compile": {
@@ -221,7 +221,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.2.0.778463": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -362,7 +362,7 @@
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms": "4.2.0.778463",
           "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "compile": {
@@ -407,7 +407,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.2.0.778463": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -548,7 +548,7 @@
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms": "4.2.0.778463",
           "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "compile": {
@@ -593,7 +593,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.2.0.778463": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -734,7 +734,7 @@
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Forms": "4.2.0.778463",
           "Xamarin.Forms.PancakeView": "1.1.8"
         },
         "compile": {
@@ -748,7 +748,7 @@
   },
   "libraries": {
     "Newtonsoft.Json/12.0.2": {
-      "sha512": "mtweBXPWhp1CMQATtBT7ZfMZrbZBTKfjGwz6Y75NwGjx/GztDaUnfw8GK9KZ2T4fDIqKJyDjc9Rxlw5+G2FcVA==",
+      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
       "type": "package",
       "path": "newtonsoft.json/12.0.2",
       "files": [
@@ -778,7 +778,7 @@
       ]
     },
     "System.Numerics.Vectors/4.5.0": {
-      "sha512": "nATsBTD2CKr4AYN6eRszhX4sptImWmBJwB/U6XKCWWfnCcrTBw8XSCm3QA9gjppkHTr8OkXUY21MR91D3QZXsw==",
+      "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
       "type": "package",
       "path": "system.numerics.vectors/4.5.0",
       "files": [
@@ -825,7 +825,7 @@
       ]
     },
     "Xamarin.Essentials/1.2.0": {
-      "sha512": "TRLw7BaklyxhjhSn3uCURS8szBVokQTsLEIHBouho7PuDvy0CDlhnr/ZhiZny7GXw6xX33zcD1AXZz2DvqBN9A==",
+      "sha512": "o3i5uAchUpAvAlJX0onYFFiDo6jpKl9vgvrdDtXEuEfum0UDrSx8oGGBUjlFyUoRpvWVumXwo0VS3AbzuwEofg==",
       "type": "package",
       "path": "xamarin.essentials/1.2.0",
       "files": [
@@ -867,10 +867,10 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/4.2.0.709249": {
-      "sha512": "3DWqPSn9kSKJW5mwjmICV/+4IpPQrequEN1VXUhsF0i9KKnfj49jFk9VbJnT9o2aesJAk00NED67XPbSmbxKjw==",
+    "Xamarin.Forms/4.2.0.778463": {
+      "sha512": "0dGuPOn9KrS65rmVgOrV5knDYHxWkWEm7c/CLp6AKSlvOpZ40+YrN+7oX5hHE6lpX+dizLCaOE/RvYS3ONy9/Q==",
       "type": "package",
-      "path": "xamarin.forms/4.2.0.709249",
+      "path": "xamarin.forms/4.2.0.778463",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1109,7 +1109,7 @@
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.2.0.709249.nupkg.sha512",
+        "xamarin.forms.4.2.0.778463.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1139,7 +1139,7 @@
       "HyperLove >= 1.0.0",
       "Newtonsoft.Json >= 12.0.2",
       "Xamarin.Essentials >= 1.2.0",
-      "Xamarin.Forms >= 4.2.0.709249",
+      "Xamarin.Forms >= 4.2.0.778463",
       "Xamarin.Forms.PancakeView >= 1.1.8"
     ]
   },
@@ -1150,11 +1150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.iOS\\HyperLove.iOS.csproj",
+      "projectUniqueName": "C:\\GitHub\\HyperLove\\HyperLove.iOS\\HyperLove.iOS.csproj",
       "projectName": "HyperLove.iOS",
-      "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.iOS\\HyperLove.iOS.csproj",
+      "projectPath": "C:\\GitHub\\HyperLove\\HyperLove.iOS\\HyperLove.iOS.csproj",
       "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.iOS\\obj\\",
+      "outputPath": "C:\\GitHub\\HyperLove\\HyperLove.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1175,8 +1175,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
-              "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj"
+            "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj": {
+              "projectPath": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj"
             }
           }
         }
@@ -1195,7 +1195,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.2.0.709249, )"
+            "version": "[4.2.0.778463, )"
           },
           "Xamarin.Forms.PancakeView": {
             "target": "Package",

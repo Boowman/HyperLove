@@ -1,8 +1,7 @@
-﻿using HyperLove.Modules.User;
+﻿using HyperLove.Models;
+using HyperLove.Modules.User;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -35,12 +34,12 @@ namespace HyperLove.ViewModel
                 userAssigned = user;
 
                 Random rdm = new Random();
-                int tempIndx = rdm.Next(1, 4);
+                int tempIndx = rdm.Next(0, 3);
 
                 ui_current_image.Source = user.Images[tempIndx];
                 ui_info_name.Text       = (user.First + " " + user.Last + ", " + user.Age.ToString());
 
-                ui_info_quote_title.Text = user.Quotes.Keys.ElementAt(0).ToString();
+                ui_info_quote_title.Text = Functions.QuotesTitles(user.Quotes.Keys.ElementAt(0));
                 ui_info_quote_desc.Text  = user.Quotes[user.Quotes.Keys.ElementAt(0)];
             }
             else

@@ -1,4 +1,6 @@
 FormsViewGroup
+Square.OkHttp
+Square.OkIO
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Core.Runtime
 Xamarin.Android.Arch.Lifecycle.Common
@@ -39,6 +41,12 @@ Xamarin.Android.Support.Vector.Drawable
 Xamarin.Android.Support.VersionedParcelable
 Xamarin.Android.Support.ViewPager
 Xamarin.Essentials
+Xamarin.Firebase.Common
+Xamarin.Firebase.Firestore
 Xamarin.Forms.PancakeView
 Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
+Xamarin.Google.Guava
+Xamarin.Google.Guava.FailureAccess
+Xamarin.GooglePlayServices.Basement
+Xamarin.GooglePlayServices.Tasks

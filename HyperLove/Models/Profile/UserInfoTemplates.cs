@@ -159,7 +159,7 @@ namespace HyperLove.Models.Profile
             title.HorizontalOptions = LayoutOptions.FillAndExpand;
             title.VerticalOptions   = LayoutOptions.FillAndExpand;
 
-            title.Text = QuotesTitles(title_idx);
+            title.Text = Functions.QuotesTitles(title_idx);
 
             Label description = new Label();
             description.FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label));
@@ -176,22 +176,6 @@ namespace HyperLove.Models.Profile
             return layout;
         }
 
-        private string QuotesTitles(int x)
-        {
-            switch (x)
-            {
-                case 0:
-                    return "Do you want babies?";
-                case 1:
-                    return "How would you handle...";
-                case 3:
-                    return "Do you like icecream?";
-                case 12:
-                    return "Would you like to fuck off?";
-            }
-
-            return string.Empty;
-        }
         /*
          * Preferences template that will get displayed when viewing more
          * info about a certain profile

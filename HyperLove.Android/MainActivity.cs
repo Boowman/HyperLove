@@ -6,12 +6,20 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Firebase.Firestore;
+using Firebase;
+using Java.Util;
+using HyperLove.Modules.User;
 
 namespace HyperLove.Droid
 {
     [Activity(Label = "HyperLove", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        private static FirebaseFirestore database;
+
+        public static FirebaseFirestore Database { get => database; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -21,7 +29,6 @@ namespace HyperLove.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
 
             int uiOptions = (int)Window.DecorView.SystemUiVisibility;
 
@@ -31,6 +38,18 @@ namespace HyperLove.Droid
             uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
 
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+
+            database = GetDatabase();
+
+            HashMap map = new HashMap();
+            map.Put("first", "Denisz");
+            map.Put("last", "Pop");
+            map.Put("age", 25);
+
+            DocumentReference reference = database.Collection("users").Document();
+            reference.Set(map);
+
+            LoadApplication(new App());
         }
 
         protected override void OnStart()
@@ -66,6 +85,24 @@ namespace HyperLove.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private FirebaseFirestore GetDatabase()
+        {
+            FirebaseFirestore database;
+
+            var options = new FirebaseOptions.Builder()
+                .SetProjectId("datingapp-f9b91")
+                .SetApplicationId("datingapp-f9b91")
+                .SetApiKey("AIzaSyAI1FqTtwwCJXyoP_TB5ktdnayaA76hBgY")
+                .SetDatabaseUrl("https://datingapp-f9b91.firebaseio.com")
+                .SetStorageBucket("datingapp-f9b91.appspot.com")
+                .Build();
+
+            var app = FirebaseApp.InitializeApp(this, options);
+            database = FirebaseFirestore.GetInstance(app);
+
+            return database;
         }
     }
 }

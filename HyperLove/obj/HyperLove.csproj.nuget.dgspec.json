@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {}
+    "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj": {}
   },
   "projects": {
-    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
+    "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectUniqueName": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj",
         "projectName": "HyperLove",
-        "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectPath": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\obj\\",
+        "outputPath": "C:\\GitHub\\HyperLove\\HyperLove\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -57,9 +57,13 @@
               "target": "Package",
               "version": "[1.2.0, )"
             },
+            "Xamarin.Firebase.Common": {
+              "target": "Package",
+              "version": "[60.1142.1, )"
+            },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.2.0.709249, )"
+              "version": "[4.2.0.778463, )"
             },
             "Xamarin.Forms.PancakeView": {
               "target": "Package",
@@ -76,7 +80,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview9-014004\\RuntimeIdentifierGraph.json"
         }
       }
     }

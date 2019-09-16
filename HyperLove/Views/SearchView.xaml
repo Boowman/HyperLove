@@ -35,29 +35,31 @@
             </Grid>
 
             <!-- Image Selection Dots -->
-            <StackLayout x:Name="ui_image_selection" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.035" Orientation="Horizontal" Margin="15, 0, 15, 15" Spacing="10">
+            <StackLayout x:Name="ui_image_selection" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.05" Orientation="Horizontal" Margin="15, 0, 15, 15" Spacing="10">
             </StackLayout>
             
             <!-- User Profile More Info -->
             <AbsoluteLayout x:Name="ui_profile_root" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" IsVisible="False">
                 <ScrollView x:Name="ui_scroll_menu" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Scrolled="Ui_scroll_menu_Scrolled">
-                    <StackLayout x:Name="ui_user_info" Margin="0, 75, 0, 0">
+                    <StackLayout x:Name="ui_user_info" Margin="0, 460, 0, 0">
                         <pancake:PancakeView VerticalOptions="Start" BackgroundColor="#FFFFFF" CornerRadius="25, 25, 0, 0">
                             <StackLayout>
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start" ColumnSpacing="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Text="&#xf7a9;" TextColor="#F5B22C" FontSize="40" FontFamily="{StaticResource FontAwesomeSolid}"    Clicked="DislikedUser"  BackgroundColor="#FFFFFF"/>
-                                    <Button Grid.Column="1" Text="&#xf26e;" TextColor="#FF413A" FontSize="60" FontFamily="{StaticResource FontAwesomeBrands}"   Clicked="LovedUser"     BackgroundColor="#FFFFFF"/>
-                                    <Button Grid.Column="2" Text="&#xf004;" TextColor="#F5B22C" FontSize="40" FontFamily="{StaticResource FontAwesomeSolid}"    Clicked="LikedUser"     BackgroundColor="#FFFFFF"/>
-                                </Grid>
-                                <StackLayout Orientation="Vertical" VerticalOptions="Start" Spacing="0" Margin="0, 15">
-                                    <Label x:Name="ui_user_name"        FontSize="Title"    TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
-                                    <Label x:Name="ui_user_location"    FontSize="Subtitle" TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
-                                    <Label x:Name="ui_user_job"         FontSize="Subtitle" TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                <StackLayout HeightRequest="220" Spacing="0">
+                                    <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Text="&#xf7a9;" TextColor="#F5B22C" FontSize="40" FontFamily="{StaticResource FontAwesomeSolid}"    Clicked="DislikedUser"  BackgroundColor="#FFFFFF"/>
+                                        <Button Grid.Column="1" Text="&#xf26e;" TextColor="#FF413A" FontSize="60" FontFamily="{StaticResource FontAwesomeBrands}"   Clicked="LovedUser"     BackgroundColor="#FFFFFF"/>
+                                        <Button Grid.Column="2" Text="&#xf004;" TextColor="#F5B22C" FontSize="40" FontFamily="{StaticResource FontAwesomeSolid}"    Clicked="LikedUser"     BackgroundColor="#FFFFFF"/>
+                                    </Grid>
+                                    <StackLayout Orientation="Vertical" Spacing="0" Margin="0, 15">
+                                        <Label x:Name="ui_user_name"      Text="Lenard Pop, 25" FontSize="Title"    TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                        <Label x:Name="ui_user_location"  Text="Birmingham, United Kingdom" FontSize="Subtitle" TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                        <Label x:Name="ui_user_job"       Text="Junior Web Developer" FontSize="Subtitle" TextColor="#000000" LineBreakMode="NoWrap" HorizontalTextAlignment="Center"/>
+                                    </StackLayout>
                                 </StackLayout>
                                 <FlexLayout x:Name="ui_user_preferences_list" Wrap="Wrap" Direction="Row" FlowDirection="LeftToRight" JustifyContent="Start" VerticalOptions="StartAndExpand">
                                     <StackLayout HeightRequest="35" Padding="0" Margin="0" Orientation="Horizontal" Spacing="0" BackgroundColor="Red">

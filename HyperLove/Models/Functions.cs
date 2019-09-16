@@ -22,5 +22,22 @@ namespace HyperLove.Models
 
             return word;
         }
+
+        public static string QuotesTitles(int x)
+        {
+            switch (x)
+            {
+                case 0:
+                    return "Do you want babies?";
+                case 1:
+                    return "How would you handle...";
+                case 3:
+                    return "Do you like icecream?";
+                case 12:
+                    return "Would you like to fuck off?";
+            }
+
+            return string.Empty;
+        }
     }
 }
