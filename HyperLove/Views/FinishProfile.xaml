@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="HyperLove.FinishProfile">
+    <ContentPage.Content>
+        <StackLayout x:Name="ui_pages_setup" Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#FFFFFF">
+            <StackLayout Orientation="Horizontal" Margin="0, 45, 0, 0" Spacing="7.5" VerticalOptions="Start">
+                <Label Text="Hello" FontSize="35" TextColor="#000000" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End"/>
+                <Label x:Name="ui_display_name" Text="Lenard" FontSize="35" FontAttributes="Bold" TextColor="#000000" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Spacing="0">
+                <Label Text="Please make the following selections" FontSize="20" TextColor="#000000" FontAttributes="Italic" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                <Label Text="So that we can get you settled in :D" FontSize="20" TextColor="#000000" FontAttributes="Italic" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout x:Name="ui_current_page" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Orientation="Horizontal" HeightRequest="15" Margin="0, 35, 0, 0">
+                <pancake:PancakeView CornerRadius="100" WidthRequest="15" HeightRequest="15" VerticalOptions="CenterAndExpand" BackgroundColor="#C0C0C0"/>
+                <pancake:PancakeView CornerRadius="100" WidthRequest="15" HeightRequest="15" VerticalOptions="CenterAndExpand" BackgroundColor="#C0C0C0"/>
+                <pancake:PancakeView CornerRadius="100" WidthRequest="15" HeightRequest="15" VerticalOptions="CenterAndExpand" BackgroundColor="#C0C0C0"/>
+            </StackLayout>
+            
+            <Grid Margin="25, 25, 25, 0" VerticalOptions="Start" RowSpacing="0" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="Know as..." FontSize="Medium" TextColor="#A0A0A0" HorizontalOptions="FillAndExpand"/>
+                <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="ui_user_name" Text="Lenard Pop" TextColor="#000000" FontSize="Large" HorizontalTextAlignment="Start"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout VerticalOptions="Start" Margin="25, 25, 25, 0" Spacing="25" IsVisible="False">
+                <Grid ColumnSpacing="25">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="I identify as a..." FontSize="Medium" TextColor="#A0A0A0"/>
+                    <pancake:PancakeView x:Name="ui_male_selection_parent" Grid.Row="1" Grid.Column="0" CornerRadius="15" BorderColor="#000000" BorderThickness="2" Padding="5.5">
+                        <Button x:Name="ui_male_selection" Text="Male" FontSize="25" TextColor="#000000" BackgroundColor="#FFFFFF" Clicked="GenderSelected"/>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_female_selection_parent" Grid.Row="1" Grid.Column="1" CornerRadius="15" BorderColor="#000000" BorderThickness="2" Padding="5.5">
+                        <Button x:Name="ui_female_selection" Text="Female" FontSize="25" TextColor="#000000" BackgroundColor="#FFFFFF" Clicked="GenderSelected"/>
+                    </pancake:PancakeView>
+                </Grid>
+                <Grid ColumnSpacing="25">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="I'm looking for a..." FontSize="Medium" TextColor="#A0A0A0"/>
+                    <pancake:PancakeView x:Name="ui_men_selection_parent" Grid.Row="1" Grid.Column="0" CornerRadius="15" BorderColor="#000000" BorderThickness="2" Padding="5.5">
+                        <Button x:Name="ui_men_selection" Text="Men" FontSize="25" TextColor="#000000" BackgroundColor="#FFFFFF" Clicked="IntrestSelected"/>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_women_selection_parent" Grid.Row="1" Grid.Column="1" CornerRadius="15" BorderColor="#000000" BorderThickness="2" Padding="5.5">
+                        <Button x:Name="ui_women_selection" Text="Women" FontSize="25" TextColor="#000000" BackgroundColor="#FFFFFF" Clicked="IntrestSelected"/>
+                    </pancake:PancakeView>
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="25, 25, 25, 0" VerticalOptions="Start" Spacing="0" IsVisible="False">
+                <Grid ColumnSpacing="0" VerticalOptions="StartAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Date of birth..." FontSize="Medium" TextColor="#A0A0A0" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="Current Age:" FontSize="Medium" TextColor="#A0A0A0"/>
+                        <Label x:Name="ui_current_age" Text="" FontSize="Medium" FontAttributes="Bold" TextColor="#000000"/>
+                    </StackLayout>
+                    <pancake:PancakeView x:Name="ui_day_pick" Grid.Row="1" Grid.Column="0">
+                        <Label x:Name="ui_day_pick_text" Text="01" TextColor="#000000" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_month_pick" Grid.Row="1" Grid.Column="1">
+                        <Label x:Name="ui_month_pick_text" Text="01" TextColor="#000000" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_year_pick" Grid.Row="1" Grid.Column="2">
+                        <Label x:Name="ui_year_pick_text" Text="1994" TextColor="#000000" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </pancake:PancakeView>
+                    <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#000000"/>
+                </Grid>
+                <Grid x:Name="ui_date_picker" VerticalOptions="Start" ColumnSpacing="0" HeightRequest="300" IsVisible="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <pancake:PancakeView x:Name="ui_date_day_selection" Grid.Row="0" Grid.Column="0" BorderColor="#A0A0A0" BorderThickness="2" BackgroundColor="#FFFFFF" IsVisible="False">
+                        <ScrollView>
+                            <StackLayout x:Name="ui_date_day_list" Spacing="0"></StackLayout>
+                        </ScrollView>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_date_month_selection" Grid.Row="0" Grid.Column="1" BorderColor="#A0A0A0" BorderThickness="2"  BackgroundColor="#FFFFFF" IsVisible="False">
+                        <ScrollView>
+                            <StackLayout x:Name="ui_date_month_list" Spacing="0"></StackLayout>
+                        </ScrollView>
+                    </pancake:PancakeView>
+                    <pancake:PancakeView x:Name="ui_date_year_selection" Grid.Row="0" Grid.Column="2" BorderColor="#A0A0A0" BorderThickness="2"  BackgroundColor="#FFFFFF" IsVisible="False">
+                        <ScrollView>
+                            <StackLayout x:Name="ui_date_year_list" Spacing="0"></StackLayout>
+                        </ScrollView>
+                    </pancake:PancakeView>
+                </Grid>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HeightRequest="50" Margin="25, 25" VerticalOptions="EndAndExpand">
+                <pancake:PancakeView x:Name="ui_prev_setup" CornerRadius="10" WidthRequest="100" HorizontalOptions="StartAndExpand" BackgroundColor="#D3A015" IsVisible="False">
+                    <Button Text="Back" TextColor="#FFFFFF" Clicked="PreviousSetup" BackgroundColor="#D3A015"/>
+                </pancake:PancakeView>
+                <pancake:PancakeView x:Name="ui_next_setup" CornerRadius="10" WidthRequest="100" HorizontalOptions="EndAndExpand" BackgroundColor="#F5B22C" IsVisible="True">
+                    <Button Text="Continue" TextColor="#FFFFFF" Clicked="ContinueSetup" BackgroundColor="#F5B22C"/>
+                </pancake:PancakeView>
+                <pancake:PancakeView x:Name="ui_finish_setup" CornerRadius="10" WidthRequest="100" HorizontalOptions="EndAndExpand" BackgroundColor="#F5B22C" IsVisible="False">
+                    <Button Text="Finish" TextColor="#FFFFFF" Clicked="FinishSetup" BackgroundColor="#F5B22C"/>
+                </pancake:PancakeView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

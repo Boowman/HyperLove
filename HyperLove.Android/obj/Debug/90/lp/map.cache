@@ -40,6 +40,7 @@ Xamarin.Android.Support.v7.RecyclerView
 Xamarin.Android.Support.Vector.Drawable
 Xamarin.Android.Support.VersionedParcelable
 Xamarin.Android.Support.ViewPager
+Xamarin.Auth
 Xamarin.Essentials
 Xamarin.Firebase.Common
 Xamarin.Firebase.Firestore

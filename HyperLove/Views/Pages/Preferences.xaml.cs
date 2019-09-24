@@ -48,7 +48,7 @@ namespace HyperLove.Views
 
                     if(row.IsLocked == false)
                     {
-                        if (row.Modal != null && row.IsSelected == false && (row.Modal is MainMenu) == false)
+                        if (row.Modal != null && row.IsSelected == false && (row.Modal is SearchView) == false)
                         {
                             row.IsSelected = true;
                             ModalPage modal = (row.Modal as ModalPage);

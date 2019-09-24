@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:panckage="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="HyperLove.LoginView"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesomeBrands.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeBrands-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesomeRegular.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeRegular-Regular.otf"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesomeSolid.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeSolid-Regular.otf"/>
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#FFFFFF" Padding="0, 25, 0, 0" Spacing="0">
+            <Image Source="login_bg" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="Hello" FontSize="50" FontAttributes="Bold" TextColor="#000000" HorizontalTextAlignment="Center"/>
+                <Label Text="Please sign In to your account" FontSize="20" FontAttributes="None" TextColor="#000000" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Grid Margin="35, 0, 35, 36" ColumnSpacing="15" VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="We don't post anything to Facebook or Instagram" FontSize="12.5" FontAttributes="None" TextColor="#C0C0C0" HorizontalTextAlignment="Center"/>
+                <panckage:PancakeView x:Name="ui_facebook_login" Grid.Row="1" Grid.Column="0" HasShadow="True" CornerRadius="15" Padding="0, 10, 0, 10" BackgroundColor="#4267B2">
+                    <panckage:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FacebookLogin_Click"/>
+                    </panckage:PancakeView.GestureRecognizers>
+                    <StackLayout Orientation="Vertical" Spacing="7">
+                        <Label Text="&#xf09a;"          FontSize="40"     TextColor="#FFFFFF" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontFamily="{StaticResource FontAwesomeBrands}"/>
+                        <Label Text="Continue with"     FontSize="Large"  TextColor="#FFFFFF" HorizontalTextAlignment="Center" Margin="0, 0, 0, -10"/>
+                        <Label Text="FACEBOOK"          FontSize="Large"  TextColor="#FFFFFF" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                </panckage:PancakeView>
+                <panckage:PancakeView x:Name="ui_instagram_login" Grid.Row="1" Grid.Column="1" HasShadow="True" CornerRadius="15" Padding="0, 10, 0, 10" BackgroundColor="#D32153">
+                    <panckage:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="InstagramLogin_Clicked"/>
+                    </panckage:PancakeView.GestureRecognizers>
+                    <StackLayout Orientation="Vertical" Spacing="7">
+                        <Label Text="&#xf16d;"           FontSize="40"     TextColor="#FFFFFF" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontFamily="{StaticResource FontAwesomeBrands}"/>
+                        <Label Text="Continue with"      FontSize="Large"  TextColor="#FFFFFF" HorizontalTextAlignment="Center" Margin="0, 0, 0, -10"/>
+                        <Label Text="INSTAGRAM"          FontSize="Large"  TextColor="#FFFFFF" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                </panckage:PancakeView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

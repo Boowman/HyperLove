@@ -21,7 +21,7 @@ namespace HyperLove.Views
             if (ui_rows_list.SelectedItem != null)
             {
                 // Open Modal
-                await Navigation.PushModalAsync(new MainMenu());
+                await Navigation.PushModalAsync(new SearchView());
             }
         }
 

@@ -1,27 +1,24 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Firebase.Firestore;
-using Firebase;
-using Java.Util;
-using HyperLove.Modules.User;
+using Xamarin.Auth;
 
 namespace HyperLove.Droid
 {
     [Activity(Label = "HyperLove", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private static FirebaseFirestore database;
-
-        public static FirebaseFirestore Database { get => database; }
+        public static MainActivity Instance;
+        public FirebaseFirestore database;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            if (Instance == null)
+                Instance = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -31,7 +28,6 @@ namespace HyperLove.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             int uiOptions = (int)Window.DecorView.SystemUiVisibility;
-
             //uiOptions |= (int)SystemUiFlags.LowProfile;
             //uiOptions |= (int)SystemUiFlags.Fullscreen;
             uiOptions |= (int)SystemUiFlags.HideNavigation;
@@ -39,16 +35,7 @@ namespace HyperLove.Droid
 
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 
-            database = GetDatabase();
-
-            HashMap map = new HashMap();
-            map.Put("first", "Denisz");
-            map.Put("last", "Pop");
-            map.Put("age", 25);
-
-            DocumentReference reference = database.Collection("users").Document();
-            reference.Set(map);
-
+            database = new DatabaseService().GetDatabase(this);
             LoadApplication(new App());
         }
 
@@ -86,23 +73,17 @@ namespace HyperLove.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        private FirebaseFirestore GetDatabase()
+    
+        public void OAuthStartActivity(OAuth2Authenticator auth)
         {
-            FirebaseFirestore database;
+            var gui = auth.GetUI(this);
+            StartActivity(gui);
+        }
 
-            var options = new FirebaseOptions.Builder()
-                .SetProjectId("datingapp-f9b91")
-                .SetApplicationId("datingapp-f9b91")
-                .SetApiKey("AIzaSyAI1FqTtwwCJXyoP_TB5ktdnayaA76hBgY")
-                .SetDatabaseUrl("https://datingapp-f9b91.firebaseio.com")
-                .SetStorageBucket("datingapp-f9b91.appspot.com")
-                .Build();
-
-            var app = FirebaseApp.InitializeApp(this, options);
-            database = FirebaseFirestore.GetInstance(app);
-
-            return database;
+        public void OAuthStartActivity(OAuth1Authenticator auth)
+        {
+            var gui = auth.GetUI(this);
+            StartActivity(gui);
         }
     }
 }

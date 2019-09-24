@@ -1,0 +1,169 @@
+﻿using System.Collections.Generic;
+using Xamarin.Forms.Internals;
+using System;
+
+namespace HyperLove.Models.User
+{
+    public struct SProfileImage
+    {
+        public string Title { get; set; }
+        public string URL { get; set; }
+    }
+    public struct SProfileCarrer
+    {
+        public string Title { get; set; }
+        public string Company { get; set; }
+    }
+
+    public class PreferencesInfo
+    {
+        public Relationship Relationship    = new Relationship()    { Enabled = true, Icon = "f004", Value = ERelationship.Relationship  };
+        public GenderIntrest Gender         = new GenderIntrest()   { Enabled = true, Icon = "f228", Value = EGenderIntrest.Mixed        };
+        public Children Children            = new Children()        { Enabled = true, Icon = "f77c", Value = EChildren.WantSomeday       };
+        public Education Education          = new Education()       { Enabled = true, Icon = "f19d", Value = EEducation.Postgraduate     };
+        public Pets Pets                    = new Pets()            { Enabled = true, Icon = "f1b0", Value = EPets.DontWant              };
+        public Exercise Exercise            = new Exercise()        { Enabled = true, Icon = "f44b", Value = EExercise.Sometimes         };
+
+        public Drinking Drinking    = new Drinking()    { Enabled = true, Icon = "f5ce", Value = EDrinking.Socially  };
+        public Smoking Smoking      = new Smoking()     { Enabled = true, Icon = "f48d", Value = ESmoking.Never      };
+
+        public Ethnicity Ethnicity  = new Ethnicity()   { Enabled = true, Icon = "f0c0", Value = EEthnicity.EastAsian    };
+        public Religion Religion    = new Religion()    { Enabled = true, Icon = "f683", Value = EReligion.Atheist       };
+        public Politics Politics    = new Politics()    { Enabled = true, Icon = "f66f", Value = EPolitics.Apolitical    };
+
+        //public string Neighborhood;
+
+        // Range
+        public int MinAge   = 18;
+        public int MaxAge   = 75;
+
+        // Max Distance
+        public int Distance = 20;
+
+        // Centimeters
+        public float Height = 170.0f;
+
+        public bool Available()
+        {
+            if (Relationship.Enabled || Gender.Enabled || Children.Enabled || Education.Enabled || Pets.Enabled || Exercise.Enabled || Drinking.Enabled || Smoking.Enabled || Ethnicity.Enabled || Religion.Enabled || Politics.Enabled)
+                return true;
+
+            return false;
+        }
+    }
+
+    [Preserve(AllMembers = true)]
+    public class UserProfile
+    {
+        // Search Preferences
+        private PreferencesInfo preferences;
+
+        // Private Info
+        private UserBase userBaseInfo;
+        private string email = "";
+        private string gender = "";
+        private string intrestedIn = "";
+
+        private string school   = "";
+        private SProfileCarrer carrer;
+
+        // Profile Info
+        private Dictionary<int, string> quotes;
+        private UserSwipes userSwipes;
+
+        private UserLocation location;
+
+        private List<SProfileImage> images;
+        private bool verified = false;
+        private bool premium = false;
+
+        // Social Media Connections
+        private UserSocialAccount instagram;
+        private UserSocialAccount spotify;
+
+        // Start Separate Collection
+        public PreferencesInfo Preferences { get => preferences; set => preferences = value; }
+        public UserSwipes Swipes { get => userSwipes; set => userSwipes = value; }
+        // End Separate Collection
+
+        public UserBase UserBase { get => userBaseInfo; set => userBaseInfo = value; }
+        public UserLocation Location { get => location; set => location = value; }
+
+        public Dictionary<int, string> Quotes { get => quotes; set => quotes = value; }
+        public List<SProfileImage> Images { get => images; set => images = value; }
+        public SProfileCarrer Carrer { get => carrer; set => carrer = value; }
+
+        public string Email { get => email; set => email = value; }
+        public string Gender { get => gender; set => gender = value; }
+        public string IntrestedIn { get => intrestedIn; set => intrestedIn = value; }
+        public string School { get => school; set => school = value; }
+
+        public bool Verified { get => verified; set => verified = value; }
+        public bool Premium { get => premium; set => premium = value; }
+
+        public UserSocialAccount Instagram { get => instagram; set => instagram = value; }
+        public UserSocialAccount Spotify { get => spotify; set => spotify = value; }
+
+        public UserProfile() 
+        {
+            preferences  = new PreferencesInfo();
+            userBaseInfo = new UserBase();
+
+            carrer  = new SProfileCarrer();
+            images  = new List<SProfileImage>();
+            quotes  = new Dictionary<int, string>();
+
+            location = new UserLocation();
+
+            userSwipes          = new UserSwipes();
+            userSwipes.Matches  = new List<string>();
+            userSwipes.Loves    = new List<string>();
+            userSwipes.Likes    = new List<string>();
+            userSwipes.Dislikes = new List<string>();
+
+            instagram = new UserSocialAccount();
+            spotify   = new UserSocialAccount();
+        }
+
+        public List<SpotifyAlbum> GetSpotifyAlbums()
+        {
+            /*
+                Get App.SearchingProfiles[currentUser].Spotify.Social_ID
+                    Connect to spotify's API and retrieve info regarding the Social_ID
+                        Get 10 Most Listened to songs
+                            Get the label and image of the album
+            */
+            Console.WriteLine("Spotify: " + UserBase.ID + "Social ID: " + Spotify.Social_ID);
+
+            List<SpotifyAlbum> temp = new List<SpotifyAlbum>();
+            temp.Add(new SpotifyAlbum() { Label = "Travis Scott",   Image = "travis_scott" });
+            temp.Add(new SpotifyAlbum() { Label = "The Weekend",    Image = "the_weekend" });
+            temp.Add(new SpotifyAlbum() { Label = "Kanye West",     Image = "kanye_west" });
+
+            return temp;
+        }
+
+        public List<InstagramPicture> GetInstagramImages()
+        {                    
+            /*
+                Get App.SearchingProfiles[currentUser].Instagram.Social_ID
+                    Connect to instagram's API and retrieve the newest images
+                        Get any title of the image and the image url
+            */
+            Console.WriteLine("Instagram: " + UserBase.ID + "Social ID: " + Instagram.Social_ID);
+
+            List<InstagramPicture> temp = new List<InstagramPicture>();
+            temp.Add(new InstagramPicture() { Label = "Selfie",     Image = "insta_1" });
+            temp.Add(new InstagramPicture() { Label = "Holiday",    Image = "insta_4" });
+            temp.Add(new InstagramPicture() { Label = "Summer",     Image = "insta_5" });
+            temp.Add(new InstagramPicture() { Label = "Fuck off",   Image = "insta_3" });
+
+            return temp;
+        }
+
+        public int GetAge()
+        {
+            return DateTime.Now.Year - UserBase.Birthday.Year;
+        }
+    }
+}

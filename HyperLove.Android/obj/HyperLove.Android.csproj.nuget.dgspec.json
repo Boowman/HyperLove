@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {}
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+        "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
         "projectName": "HyperLove.Android",
-        "projectPath": "C:\\GitHub\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
+        "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\HyperLove.Android.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\HyperLove\\HyperLove.Android\\obj\\",
+        "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj": {
-                "projectPath": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj"
+              "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
+                "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj"
               }
             }
           }
@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[28.0.0.1, )"
             },
+            "Xamarin.Auth": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.2.0, )"
@@ -98,14 +102,14 @@
         }
       }
     },
-    "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj": {
+    "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectUniqueName": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
         "projectName": "HyperLove",
-        "projectPath": "C:\\GitHub\\HyperLove\\HyperLove\\HyperLove.csproj",
+        "projectPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\HyperLove.csproj",
         "packagesPath": "C:\\Users\\denis\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\HyperLove\\HyperLove\\obj\\",
+        "outputPath": "D:\\Github\\HyperVoid\\HyperLove\\HyperLove\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -146,6 +150,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.2, )"
+            },
+            "Xamarin.Auth": {
+              "target": "Package",
+              "version": "[1.7.0, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",

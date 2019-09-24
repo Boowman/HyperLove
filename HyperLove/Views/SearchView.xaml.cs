@@ -6,10 +6,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PancakeView;
 
-using HyperLove.Modules.User;
-using System.Threading.Tasks;
 using HyperLove.ViewModel;
 using HyperLove.Models.Profile;
+using HyperLove.Models.User;
 
 namespace HyperLove
 {
@@ -39,15 +38,15 @@ namespace HyperLove
         private float yPos  = 0.105f;
 
         private UserInfoTemplates templates;
-        private UserInfo currentUserProfile;
+        private UserProfile currentUserProfile;
 
         public SearchView()
         {
             InitializeComponent();
             templates = new UserInfoTemplates();
 
-            ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
-            currentUserProfile = App.SearchingProfiles[0];
+            //ui_profiles_display.Children.Insert(0, new SearchProfile(App.SearchingProfiles[0], this, ui_image_selection));
+            //currentUserProfile = App.SearchingProfiles[0];
 
             ViewingNewUser();
 
@@ -81,9 +80,9 @@ namespace HyperLove
                 if (templates == null)
                     throw new System.ArgumentException("The `Templates` variable cannot be NULL", "templates");
 
-                ui_user_name.Text = currentUserProfile.First + " " + currentUserProfile.Last + ", " + currentUserProfile.Age.ToString();
+                ui_user_name.Text = currentUserProfile.UserBase.First + " " + currentUserProfile.UserBase.Last + ", " + currentUserProfile.GetAge().ToString();
                 ui_user_location.Text = currentUserProfile.Location.City + ", " + currentUserProfile.Location.Country;
-                ui_user_job.Text = currentUserProfile.Job;
+                ui_user_job.Text = currentUserProfile.Carrer.Title;
 
                 /* Preferences */
                 if (currentUserProfile.Preferences.Available())
@@ -149,26 +148,29 @@ namespace HyperLove
 
         public void ViewingNewUser()
         {
-            int count = ui_image_selection.Children.Count - currentUserProfile.Images.Count;
-            count = Math.Abs((count == 0) ? 0 : count);
-
-            foreach (View item in ui_image_selection.Children)
-                item.Opacity = 0.5f;
-
-            for(int x = 0; x < count; x++)
+            if(currentUserProfile != null)
             {
-                PancakeView tempView = new PancakeView();
-                tempView.WidthRequest = 18;
-                tempView.HeightRequest = 7.5;
-                tempView.CornerRadius = 15;
-                tempView.Opacity = 0.5f;
+                int count = ui_image_selection.Children.Count - currentUserProfile.Images.Count;
+                count = Math.Abs((count == 0) ? 0 : count);
 
-                tempView.BackgroundColor = Color.FromRgb(255, 255, 255);
+                foreach (View item in ui_image_selection.Children)
+                    item.Opacity = 0.5f;
 
-                ui_image_selection.Children.Insert(0, tempView);
+                for (int x = 0; x < count; x++)
+                {
+                    PancakeView tempView = new PancakeView();
+                    tempView.WidthRequest = 18;
+                    tempView.HeightRequest = 7.5;
+                    tempView.CornerRadius = 15;
+                    tempView.Opacity = 0.5f;
+
+                    tempView.BackgroundColor = Color.FromRgb(255, 255, 255);
+
+                    ui_image_selection.Children.Insert(0, tempView);
+                }
+
+                ui_image_selection.Children[0].Opacity = 1.0f;
             }
-
-            ui_image_selection.Children[0].Opacity = 1.0f;
         }
 
         private void LovedUser(object sender, EventArgs e)

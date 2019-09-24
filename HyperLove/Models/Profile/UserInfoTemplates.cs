@@ -1,9 +1,6 @@
 ﻿using HyperLove.Models.User;
-using HyperLove.Modules.User;
-using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-using Xamarin.Forms.PancakeView;
 
 namespace HyperLove.Models.Profile
 {

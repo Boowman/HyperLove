@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HyperLove.SplashScreen">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesomeBrands.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesomeBrands-Regular.otf"/>
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Label x:Name="ui_loading_logo" Text="&#xf26e;" FontFamily="{StaticResource FontAwesomeBrands}" FontSize="250" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0.5, 1, 0.45"/>
+            <Label x:Name="ui_loading_text" Text="Loading..." FontSize="30" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 1, 1, 0.2" BackgroundColor="AliceBlue"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

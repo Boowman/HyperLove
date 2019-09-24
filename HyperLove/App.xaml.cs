@@ -1,4 +1,5 @@
-﻿using HyperLove.Modules.User;
+﻿using HyperLove.Database;
+using HyperLove.Models.User;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -7,79 +8,19 @@ namespace HyperLove
 {
     public partial class App : Application
     {
-        public static UserInfo CurrentUser;
-        public static List<UserInfo> SearchingProfiles = new List<UserInfo>();
+        public static UserProfile CurrentUser { get; private set; }
+        public static List<UserProfile> SearchingProfiles = new List<UserProfile>();
 
         public App()
         {
             InitializeComponent();
-
-            CurrentUser = CreateUser();
-
-            for(int x = 0; x < 10; x++)
-            {
-                SearchingProfiles.Add(CreateUser(x));
-                Console.WriteLine("Searching: " + SearchingProfiles[x].Last);
-            }
-
-            MainPage = new NavigationPage(new SearchView());
+            CurrentUser = new UserProfile();
+            MainPage    = new SplashScreen();
         }
-
-
-        private UserInfo CreateUser(int index = -1)
+    
+        public static void UserSetupProfile(UserProfile user)
         {
-            UserInfo currentUser = new UserInfo();
-
-            currentUser.First   = "Lenard";
-            currentUser.Last    = "Pop" + index;
-            currentUser.Age     = 25 + index;
-
-            currentUser.School  = "Buckinghamshire New University";
-
-            // User Location
-            currentUser.Location.City       = "Birmingham";
-            currentUser.Location.County     = "West Midlands";
-            currentUser.Location.Country    = "United Kingdom";
-
-            currentUser.Job     = "Junior Web Developer";
-            currentUser.Company = "TonyG";
-
-            currentUser.Premium     = false;
-            currentUser.Verified    = false;
-
-            // User Images
-            currentUser.Images.Add("image_1");
-            currentUser.Images.Add("image_4");
-            currentUser.Images.Add("image_2");
-            currentUser.Images.Add("image_3");
-
-            // User Quotes
-            currentUser.Quotes.Add(0, "Lorem impus");
-            currentUser.Quotes.Add(3, "Impus");
-            currentUser.Quotes.Add(12, "Lorem impus, lorem");
-
-            // User Swipes
-            currentUser.Swipes.Matches.Add("bRcvrygwW9RX4Bof22Ra");
-            currentUser.Swipes.Matches.Add("sxNhJQeEZArEH2sMrKw8");
-            currentUser.Swipes.Matches.Add("ggsfQr3WYkQ2veyJH1vJ");
-
-            currentUser.Swipes.Loves.Add("f2LwVI55t6iu95OnCGxo");
-
-            currentUser.Swipes.Likes.Add("dssC8sgcWQFGMgYLdYW9");
-            currentUser.Swipes.Likes.Add("Vd94G8XWgi22BGaNTuYy");
-
-            currentUser.Swipes.Dislikes.Add("RJxmKM78dsYd6GWyt9gg");
-            currentUser.Swipes.Dislikes.Add("NJ0HNp6G1hLzofMKn5lb");
-            currentUser.Swipes.Dislikes.Add("373wldls1cj6b5PfDSF9");
-            currentUser.Swipes.Dislikes.Add("1FC8M4yzc1FHew1km56k");
-
-            currentUser.Instagram.Verified  = false;
-            currentUser.Spotify.Social_ID   = "instagram_ID";
-
-            currentUser.Spotify.Verified    = false;
-            currentUser.Spotify.Social_ID   = "spotify_ID";
-
-            return currentUser;
+            CurrentUser = user;
         }
 
         protected override void OnStart()
@@ -95,6 +36,71 @@ namespace HyperLove
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public static void CheckStorageInfo()
+        {
+            // Look up for a file inside the cache/user/ folder that has the name of user_xxxxxx (explode the string and get the xxxxx)
+            string user_id_file = "";
+
+            if (user_id_file != "")
+            {
+                // Get user id from the devices' storage file
+                DependencyService.Get<IUserDatabaseService>().LookingForUser(user_id_file);
+                Console.WriteLine("User File Found");
+            }
+            else
+            {
+                LoginSuccessful(false);
+                Console.WriteLine("User File Not Found");
+            }
+        }
+        
+        /// <summary>
+        /// This will determine where will the user go next based on the informations found
+        /// Setting it to false will go to the LoginView Page
+        /// </summary>
+        /// <param name="success">If a user was found or not</param>
+        /// <param name="profileCompleted">Has the user finished setting up their profile</param>
+        public static void LoginSuccessful(bool success, bool profileCompleted = false, bool createUser = false)
+        {
+            if (success == true)
+            {
+                if (profileCompleted == true)
+                {
+                    App.Current.MainPage = new NavigationPage(new SearchView());
+                    Console.WriteLine("View SearchView");
+                }
+                else
+                {
+                    Console.WriteLine("Finish Profile");
+                    App.Current.MainPage = new FinishProfile();
+                }
+            }
+            else
+            {
+                App.Current.MainPage = new LoginView();
+                Console.WriteLine("User Not Found Login");
+            }
+        }
+
+        /// <summary>
+        /// Called whenever a user has logged in via a social media account
+        /// </summary>
+        /// <param name="user">Get informations found from the social media</param>
+        /// <param name="userFound"></param>
+        public static void AuthenticationSuccessful(UserBase user)
+        {
+            if(user != null && user.ID != "")
+            {
+                CurrentUser.UserBase = user;
+                DependencyService.Get<IUserDatabaseService>().LookingForUser(user.ID);
+                Console.WriteLine("Authentication Successful Look Up User");
+            }
+            else
+            {
+                Console.WriteLine("Display a toast to the user");
+            }
         }
     }
 }

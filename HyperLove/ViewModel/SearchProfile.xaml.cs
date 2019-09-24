@@ -1,8 +1,8 @@
-﻿using HyperLove.Models;
-using HyperLove.Modules.User;
+﻿using HyperLove.Database;
+using HyperLove.Models;
+using HyperLove.Models.User;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,20 +12,20 @@ namespace HyperLove.ViewModel
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchProfile : ContentView
     {
-        private UserInfo userAssigned;
+        private UserProfile userAssigned;
 
         private int currentImage = 0;
         private StackLayout stackImageDots;
         private SearchView searchView;
 
-        public UserInfo UserAssigned { get => userAssigned; }
+        public UserProfile UserAssigned { get => userAssigned; }
 
         public SearchProfile()
         {
             InitializeComponent();
         }
 
-        public SearchProfile(UserInfo user, SearchView searchView, StackLayout stackImageDots)
+        public SearchProfile(UserProfile user, SearchView searchView, StackLayout stackImageDots)
         {
             InitializeComponent();
 
@@ -36,8 +36,8 @@ namespace HyperLove.ViewModel
                 Random rdm = new Random();
                 int tempIndx = rdm.Next(0, 3);
 
-                ui_current_image.Source = user.Images[tempIndx];
-                ui_info_name.Text       = (user.First + " " + user.Last + ", " + user.Age.ToString());
+                ui_current_image.Source = user.Images[tempIndx].URL;
+                ui_info_name.Text       = (user.UserBase.First + " " + user.UserBase.Last + ", " + user.GetAge().ToString());
 
                 ui_info_quote_title.Text = Functions.QuotesTitles(user.Quotes.Keys.ElementAt(0));
                 ui_info_quote_desc.Text  = user.Quotes[user.Quotes.Keys.ElementAt(0)];
@@ -64,7 +64,9 @@ namespace HyperLove.ViewModel
         {
             if(App.CurrentUser != null)
             {
-                App.CurrentUser.Swipes.Dislikes.Add(userAssigned.UserID);
+                App.CurrentUser.Swipes.Dislikes.Add(userAssigned.UserBase.ID);
+                DependencyService.Get<IUserDatabaseService>().DislikedPerson(UserAssigned.UserBase.ID, "");
+
                 this.searchView.ViewingNewUser();
 
                 Console.WriteLine("Profile Disliked");
@@ -77,7 +79,10 @@ namespace HyperLove.ViewModel
         {
             if (App.CurrentUser != null)
             {
-                App.CurrentUser.Swipes.Likes.Add(userAssigned.UserID);
+                App.CurrentUser.Swipes.Likes.Add(userAssigned.UserBase.ID);
+                DependencyService.Get<IUserDatabaseService>().LikedPerson(UserAssigned.UserBase.ID, "");
+
+
                 this.searchView.ViewingNewUser();
 
                 /*
@@ -94,7 +99,9 @@ namespace HyperLove.ViewModel
         {
             if (App.CurrentUser != null)
             {
-                App.CurrentUser.Swipes.Loves.Add(userAssigned.UserID);
+                App.CurrentUser.Swipes.Loves.Add(userAssigned.UserBase.ID);
+                DependencyService.Get<IUserDatabaseService>().LovedPerson(UserAssigned.UserBase.ID, "");
+
                 this.searchView.ViewingNewUser();
 
                 /*
@@ -114,7 +121,7 @@ namespace HyperLove.ViewModel
                 stackImageDots.Children[currentImage].Opacity = 0.5f;
 
                 currentImage            = ((currentImage - 1) < 0) ? UserAssigned.Images.Count - 1 : currentImage - 1;
-                ui_current_image.Source = UserAssigned.Images[currentImage];
+                ui_current_image.Source = UserAssigned.Images[currentImage].URL;
 
                 stackImageDots.Children[currentImage].Opacity = 1.0f;
 
@@ -131,7 +138,7 @@ namespace HyperLove.ViewModel
                 stackImageDots.Children[currentImage].Opacity = 0.5f;
 
                 currentImage            = ((currentImage + 1) > UserAssigned.Images.Count - 1) ? 0 : currentImage + 1;
-                ui_current_image.Source = UserAssigned.Images[currentImage];
+                ui_current_image.Source = UserAssigned.Images[currentImage].URL;
 
                 stackImageDots.Children[currentImage].Opacity = 1.0f;
 
